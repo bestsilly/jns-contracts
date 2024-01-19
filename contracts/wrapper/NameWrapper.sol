@@ -47,9 +47,9 @@ contract NameWrapper is
 
     uint64 private constant GRACE_PERIOD = 90 days;
     bytes32 private constant ETH_NODE =
-        0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae;
+        0xa58877ec636d078e724c52502dd4bf105845a9ae697b2e978efecbf12524d92a; // eth-ens-namehash
     bytes32 private constant ETH_LABELHASH =
-        0x4f5b812789fc606be1b3b16908db13fc7a9adf7ca72641f84d75b47069d3d7f0;
+        0xa73b636386078bce5dbd44215c28c4fb16908d713fd314963644638cc01274ae; // Keccak-256
     bytes32 private constant ROOT_NODE =
         0x0000000000000000000000000000000000000000000000000000000000000000;
 
@@ -80,7 +80,7 @@ contract NameWrapper is
             MAX_EXPIRY
         );
         names[ROOT_NODE] = "\x00";
-        names[ETH_NODE] = "\x03eth\x00";
+        names[ETH_NODE] = "\x04jfin\x00";
     }
 
     function supportsInterface(
@@ -96,7 +96,7 @@ contract NameWrapper is
 
     /**
      * @notice Gets the owner of a name
-     * @param id Label as a string of the .eth domain to wrap
+     * @param id Label as a string of the .jfin domain to wrap
      * @return owner The owner of the name
      */
 
@@ -268,9 +268,9 @@ contract NameWrapper is
     }
 
     /**
-     * @notice Wraps a .eth domain, creating a new token and sending the original ERC721 token to this contract
-     * @dev Can be called by the owner of the name on the .eth registrar or an authorised caller on the registrar
-     * @param label Label as a string of the .eth domain to wrap
+     * @notice Wraps a .jfin domain, creating a new token and sending the original ERC721 token to this contract
+     * @dev Can be called by the owner of the name on the .jfin registrar or an authorised caller on the registrar
+     * @param label Label as a string of the .jfin domain to wrap
      * @param wrappedOwner Owner of the name in this contract
      * @param ownerControlledFuses Initial owner-controlled fuses to set
      * @param resolver Resolver contract address
@@ -312,14 +312,14 @@ contract NameWrapper is
     }
 
     /**
-     * @dev Registers a new .eth second-level domain and wraps it.
+     * @dev Registers a new .jfin second-level domain and wraps it.
      *      Only callable by authorised controllers.
-     * @param label The label to register (Eg, 'foo' for 'foo.eth').
+     * @param label The label to register (Eg, 'foo' for 'foo.jfin').
      * @param wrappedOwner The owner of the wrapped name.
      * @param duration The duration, in seconds, to register the name for.
      * @param resolver The resolver address to set on the ENS registry (optional).
      * @param ownerControlledFuses Initial owner-controlled fuses to set
-     * @return registrarExpiry The expiry date of the new name on the .eth registrar, in seconds since the Unix epoch.
+     * @return registrarExpiry The expiry date of the new name on the .jfin registrar, in seconds since the Unix epoch.
      */
 
     function registerAndWrapETH2LD(
@@ -341,11 +341,11 @@ contract NameWrapper is
     }
 
     /**
-     * @notice Renews a .eth second-level domain.
+     * @notice Renews a .jfin second-level domain.
      * @dev Only callable by authorised controllers.
-     * @param tokenId The hash of the label to register (eg, `keccak256('foo')`, for 'foo.eth').
+     * @param tokenId The hash of the label to register (eg, `keccak256('foo')`, for 'foo.jfin').
      * @param duration The number of seconds to renew the name for.
-     * @return expires The expiry date of the name on the .eth registrar, in seconds since the Unix epoch.
+     * @return expires The expiry date of the name on the .jfin registrar, in seconds since the Unix epoch.
      */
 
     function renew(
@@ -379,7 +379,7 @@ contract NameWrapper is
     }
 
     /**
-     * @notice Wraps a non .eth domain, of any kind. Could be a DNSSEC name vitalik.xyz or a subdomain
+     * @notice Wraps a non .jfin domain, of any kind. Could be a DNSSEC name vitalik.xyz or a subdomain
      * @dev Can be called by the owner in the registry or an authorised caller in the registry
      * @param name The name to wrap, in DNS format
      * @param wrappedOwner Owner of the name in this contract
@@ -417,10 +417,10 @@ contract NameWrapper is
     }
 
     /**
-     * @notice Unwraps a .eth domain. e.g. vitalik.eth
+     * @notice Unwraps a .jfin domain. e.g. vitalik.jfin
      * @dev Can be called by the owner in the wrapper or an authorised caller in the wrapper
-     * @param labelhash Labelhash of the .eth domain
-     * @param registrant Sets the owner in the .eth registrar to this address
+     * @param labelhash Labelhash of the .jfin domain
+     * @param registrant Sets the owner in the .jfin registrar to this address
      * @param controller Sets the owner in the registry to this address
      */
 
@@ -441,7 +441,7 @@ contract NameWrapper is
     }
 
     /**
-     * @notice Unwraps a non .eth domain, of any kind. Could be a DNSSEC name vitalik.xyz or a subdomain
+     * @notice Unwraps a non .jfin domain, of any kind. Could be a DNSSEC name vitalik.xyz or a subdomain
      * @dev Can be called by the owner in the wrapper or an authorised caller in the wrapper
      * @param parentNode Parent namehash of the name e.g. vitalik.xyz would be namehash('xyz')
      * @param labelhash Labelhash of the name, e.g. vitalik.xyz would be keccak256('vitalik')
@@ -531,7 +531,7 @@ contract NameWrapper is
     }
 
     /**
-     * @notice Upgrades a domain of any kind. Could be a .eth name vitalik.eth, a DNSSEC name vitalik.xyz, or a subdomain
+     * @notice Upgrades a domain of any kind. Could be a .jfin name vitalik.jfin, a DNSSEC name vitalik.xyz, or a subdomain
      * @dev Can be called by the owner or an authorised caller
      * @param name The name to upgrade, in DNS format
      * @param extraData Extra data to pass to the upgrade contract
@@ -871,7 +871,7 @@ contract NameWrapper is
         uint256 tokenId,
         bytes calldata data
     ) public returns (bytes4) {
-        //check if it's the eth registrar ERC721
+        //check if it's the jfin registrar ERC721
         if (msg.sender != address(registrar)) {
             revert IncorrectTokenType();
         }
@@ -907,7 +907,7 @@ contract NameWrapper is
         uint32 fuses,
         uint64 expiry
     ) internal override {
-        // For this check, treat .eth 2LDs as expiring at the start of the grace period.
+        // For this check, treat .jfin 2LDs as expiring at the start of the grace period.
         if (fuses & IS_DOT_ETH == IS_DOT_ETH) {
             expiry -= GRACE_PERIOD;
         }
@@ -1071,7 +1071,7 @@ contract NameWrapper is
         uint64 maxExpiry
     ) private pure returns (uint64) {
         // Expiry cannot be more than maximum allowed
-        // .eth names will check registrar, non .eth check parent
+        // .jfin names will check registrar, non .jfin check parent
         if (expiry > maxExpiry) {
             expiry = maxExpiry;
         }
@@ -1092,8 +1092,8 @@ contract NameWrapper is
     ) private {
         bytes32 labelhash = keccak256(bytes(label));
         bytes32 node = _makeNode(ETH_NODE, labelhash);
-        // hardcode dns-encoded eth string for gas savings
-        bytes memory name = _addLabel(label, "\x03eth\x00");
+        // hardcode dns-encoded jfin string for gas savings
+        bytes memory name = _addLabel(label, "\x04jfin\x00");
         names[node] = name;
 
         _wrap(

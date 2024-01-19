@@ -24,7 +24,7 @@ contract('PublicResolver', function (accounts) {
   beforeEach(async () => {
     signers = await ethers.getSigners()
     account = await signers[0].getAddress()
-    node = namehash.hash('eth')
+    node = namehash.hash('jfin')
     ens = await ENS.new()
     nameWrapper = await NameWrapper.new()
 
@@ -48,7 +48,7 @@ contract('PublicResolver', function (accounts) {
 
     await ReverseRegistrar.setDefaultResolver(resolver.address)
 
-    await ens.setSubnodeOwner('0x0', sha3('eth'), accounts[0], {
+    await ens.setSubnodeOwner('0x0', sha3('jfin'), accounts[0], {
       from: accounts[0],
     })
   })
@@ -56,7 +56,7 @@ contract('PublicResolver', function (accounts) {
   describe('fallback function', async () => {
     it('forbids calls to the fallback function with 0 value', async () => {
       await exceptions.expectFailure(
-        web3.eth.sendTransaction({
+        web3.jfin.sendTransaction({
           from: accounts[0],
           to: resolver.address,
           gas: 3000000,
@@ -66,7 +66,7 @@ contract('PublicResolver', function (accounts) {
 
     it('forbids calls to the fallback function with 1 value', async () => {
       await exceptions.expectFailure(
-        web3.eth.sendTransaction({
+        web3.jfin.sendTransaction({
           from: accounts[0],
           to: resolver.address,
           gas: 3000000,
@@ -236,7 +236,7 @@ contract('PublicResolver', function (accounts) {
 
     it('forbids calls to the fallback function with 1 value', async () => {
       await exceptions.expectFailure(
-        web3.eth.sendTransaction({
+        web3.jfin.sendTransaction({
           from: accounts[0],
           to: resolver.address,
           gas: 3000000,
@@ -736,13 +736,13 @@ contract('PublicResolver', function (accounts) {
 
   describe('dns', async () => {
     const basicSetDNSRecords = async () => {
-      // a.eth. 3600 IN A 1.2.3.4
+      // a.jfin. 3600 IN A 1.2.3.4
       const arec = '016103657468000001000100000e10000401020304'
-      // b.eth. 3600 IN A 2.3.4.5
+      // b.jfin. 3600 IN A 2.3.4.5
       const b1rec = '016203657468000001000100000e10000402030405'
-      // b.eth. 3600 IN A 3.4.5.6
+      // b.jfin. 3600 IN A 3.4.5.6
       const b2rec = '016203657468000001000100000e10000403040506'
-      // eth. 86400 IN SOA ns1.ethdns.xyz. hostmaster.test.eth. 2018061501 15620 1800 1814400 14400
+      // jfin. 86400 IN SOA ns1.ethdns.xyz. hostmaster.test.jfin. 2018061501 15620 1800 1814400 14400
       const soarec =
         '03657468000006000100015180003a036e733106657468646e730378797a000a686f73746d6173746572057465737431036574680078492cbd00003d0400000708001baf8000003840'
       const rec = '0x' + arec + b1rec + b2rec + soarec
@@ -750,24 +750,24 @@ contract('PublicResolver', function (accounts) {
       await resolver.setDNSRecords(node, rec, { from: accounts[0] })
 
       assert.equal(
-        await resolver.dnsRecord(node, sha3(dnsName('a.eth.')), 1),
+        await resolver.dnsRecord(node, sha3(dnsName('a.jfin.')), 1),
         '0x016103657468000001000100000e10000401020304',
       )
       assert.equal(
-        await resolver.dnsRecord(node, sha3(dnsName('b.eth.')), 1),
+        await resolver.dnsRecord(node, sha3(dnsName('b.jfin.')), 1),
         '0x016203657468000001000100000e10000402030405016203657468000001000100000e10000403040506',
       )
       assert.equal(
-        await resolver.dnsRecord(node, sha3(dnsName('eth.')), 6),
+        await resolver.dnsRecord(node, sha3(dnsName('jfin.')), 6),
         '0x03657468000006000100015180003a036e733106657468646e730378797a000a686f73746d6173746572057465737431036574680078492cbd00003d0400000708001baf8000003840',
       )
     }
     it('permits setting name by owner', basicSetDNSRecords)
 
     it('should update existing records', async () => {
-      // a.eth. 3600 IN A 4.5.6.7
+      // a.jfin. 3600 IN A 4.5.6.7
       const arec = '016103657468000001000100000e10000404050607'
-      // eth. 86400 IN SOA ns1.ethdns.xyz. hostmaster.test.eth. 2018061502 15620 1800 1814400 14400
+      // jfin. 86400 IN SOA ns1.ethdns.xyz. hostmaster.test.jfin. 2018061502 15620 1800 1814400 14400
       const soarec =
         '03657468000006000100015180003a036e733106657468646e730378797a000a686f73746d6173746572057465737431036574680078492cbe00003d0400000708001baf8000003840'
       const rec = '0x' + arec + soarec
@@ -775,17 +775,17 @@ contract('PublicResolver', function (accounts) {
       await resolver.setDNSRecords(node, rec, { from: accounts[0] })
 
       assert.equal(
-        await resolver.dnsRecord(node, sha3(dnsName('a.eth.')), 1),
+        await resolver.dnsRecord(node, sha3(dnsName('a.jfin.')), 1),
         '0x016103657468000001000100000e10000404050607',
       )
       assert.equal(
-        await resolver.dnsRecord(node, sha3(dnsName('eth.')), 6),
+        await resolver.dnsRecord(node, sha3(dnsName('jfin.')), 6),
         '0x03657468000006000100015180003a036e733106657468646e730378797a000a686f73746d6173746572057465737431036574680078492cbe00003d0400000708001baf8000003840',
       )
     })
 
     it('should keep track of entries', async () => {
-      // c.eth. 3600 IN A 1.2.3.4
+      // c.jfin. 3600 IN A 1.2.3.4
       const crec = '016303657468000001000100000e10000401020304'
       const rec = '0x' + crec
 
@@ -794,43 +794,43 @@ contract('PublicResolver', function (accounts) {
       // Initial check
       var hasEntries = await resolver.hasDNSRecords(
         node,
-        sha3(dnsName('c.eth.')),
+        sha3(dnsName('c.jfin.')),
       )
       assert.equal(hasEntries, true)
-      hasEntries = await resolver.hasDNSRecords(node, sha3(dnsName('d.eth.')))
+      hasEntries = await resolver.hasDNSRecords(node, sha3(dnsName('d.jfin.')))
       assert.equal(hasEntries, false)
 
       // Update with no new data makes no difference
       await resolver.setDNSRecords(node, rec, { from: accounts[0] })
-      hasEntries = await resolver.hasDNSRecords(node, sha3(dnsName('c.eth.')))
+      hasEntries = await resolver.hasDNSRecords(node, sha3(dnsName('c.jfin.')))
       assert.equal(hasEntries, true)
 
-      // c.eth. 3600 IN A
+      // c.jfin. 3600 IN A
       const crec2 = '016303657468000001000100000e100000'
       const rec2 = '0x' + crec2
 
       await resolver.setDNSRecords(node, rec2, { from: accounts[0] })
 
       // Removal returns to 0
-      hasEntries = await resolver.hasDNSRecords(node, sha3(dnsName('c.eth.')))
+      hasEntries = await resolver.hasDNSRecords(node, sha3(dnsName('c.jfin.')))
       assert.equal(hasEntries, false)
     })
 
     it('should handle single-record updates', async () => {
-      // e.eth. 3600 IN A 1.2.3.4
+      // e.jfin. 3600 IN A 1.2.3.4
       const erec = '016503657468000001000100000e10000401020304'
       const rec = '0x' + erec
 
       await resolver.setDNSRecords(node, rec, { from: accounts[0] })
 
       assert.equal(
-        await resolver.dnsRecord(node, sha3(dnsName('e.eth.')), 1),
+        await resolver.dnsRecord(node, sha3(dnsName('e.jfin.')), 1),
         '0x016503657468000001000100000e10000401020304',
       )
     })
 
     it('forbids setting DNS records by non-owners', async () => {
-      // f.eth. 3600 IN A 1.2.3.4
+      // f.jfin. 3600 IN A 1.2.3.4
       const frec = '016603657468000001000100000e10000401020304'
       const rec = '0x' + frec
       await exceptions.expectFailure(
@@ -980,15 +980,15 @@ contract('PublicResolver', function (accounts) {
       await basicSetDNSRecords()
       await resolver.clearRecords(node)
       assert.equal(
-        await resolver.dnsRecord(node, sha3(dnsName('a.eth.')), 1),
+        await resolver.dnsRecord(node, sha3(dnsName('a.jfin.')), 1),
         null,
       )
       assert.equal(
-        await resolver.dnsRecord(node, sha3(dnsName('b.eth.')), 1),
+        await resolver.dnsRecord(node, sha3(dnsName('b.jfin.')), 1),
         null,
       )
       assert.equal(
-        await resolver.dnsRecord(node, sha3(dnsName('eth.')), 6),
+        await resolver.dnsRecord(node, sha3(dnsName('jfin.')), 6),
         null,
       )
     })
@@ -1322,11 +1322,11 @@ contract('PublicResolver', function (accounts) {
         resolver.contract.methods.text(node, 'url').encodeABI(),
       ])
       assert.equal(
-        web3.eth.abi.decodeParameters(['address'], results[0])[0],
+        web3.jfin.abi.decodeParameters(['address'], results[0])[0],
         accounts[1],
       )
       assert.equal(
-        web3.eth.abi.decodeParameters(['string'], results[1])[0],
+        web3.jfin.abi.decodeParameters(['string'], results[1])[0],
         'https://ethereum.org/',
       )
     })

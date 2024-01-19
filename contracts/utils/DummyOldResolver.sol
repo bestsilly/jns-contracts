@@ -7,6 +7,6 @@ contract DummyOldResolver {
     }
 
     function name(bytes32) public returns (string memory) {
-        return "test.eth";
+        return "test.jfin";
     }
 }

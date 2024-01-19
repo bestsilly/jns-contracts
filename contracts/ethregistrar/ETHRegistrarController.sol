@@ -42,7 +42,7 @@ contract ETHRegistrarController is
 
     uint256 public constant MIN_REGISTRATION_DURATION = 28 days;
     bytes32 private constant ETH_NODE =
-        0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae;
+        0xa58877ec636d078e724c52502dd4bf105845a9ae697b2e978efecbf12524d92a;
     uint64 private constant MAX_EXPIRY = type(uint64).max;
     BaseRegistrarImplementation immutable base;
     IPriceOracle public immutable prices;
@@ -274,7 +274,7 @@ contract ETHRegistrarController is
         bytes32 label,
         bytes[] calldata data
     ) internal {
-        // use hardcoded .eth namehash
+        // use hardcoded .jfin namehash
         bytes32 nodehash = keccak256(abi.encodePacked(ETH_NODE, label));
         Resolver resolver = Resolver(resolverAddress);
         resolver.multicallWithNodeCheck(nodehash, data);
@@ -289,7 +289,7 @@ contract ETHRegistrarController is
             msg.sender,
             owner,
             resolver,
-            string.concat(name, ".eth")
+            string.concat(name, ".jfin")
         );
     }
 }

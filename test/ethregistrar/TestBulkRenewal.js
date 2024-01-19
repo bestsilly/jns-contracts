@@ -14,8 +14,8 @@ const sha3 = require('web3-utils').sha3
 const toBN = require('web3-utils').toBN
 const { exceptions } = require('../test-utils')
 
-const ETH_LABEL = sha3('eth')
-const ETH_NAMEHASH = namehash.hash('eth')
+const ETH_LABEL = sha3('jfin')
+const ETH_NAMEHASH = namehash.hash('jfin')
 
 contract('BulkRenewal', function (accounts) {
   let ens
@@ -35,9 +35,13 @@ contract('BulkRenewal', function (accounts) {
     // Create a registry
     ens = await ENS.new()
     // Create a base registrar
-    baseRegistrar = await BaseRegistrar.new(ens.address, namehash.hash('eth'), {
-      from: ownerAccount,
-    })
+    baseRegistrar = await BaseRegistrar.new(
+      ens.address,
+      namehash.hash('jfin'),
+      {
+        from: ownerAccount,
+      },
+    )
 
     // Setup reverseRegistrar
     reverseRegistrar = await deploy('ReverseRegistrar', ens.address)
@@ -95,8 +99,8 @@ contract('BulkRenewal', function (accounts) {
     // Create the bulk registration contract
     bulkRenewal = await BulkRenewal.new(ens.address)
 
-    // Configure a resolver for .eth and register the controller interface
-    // then transfer the .eth node to the base registrar.
+    // Configure a resolver for .jfin and register the controller interface
+    // then transfer the .jfin node to the base registrar.
     await ens.setSubnodeRecord(
       '0x0',
       ETH_LABEL,
@@ -133,6 +137,6 @@ contract('BulkRenewal', function (accounts) {
     const newExpiry = await baseRegistrar.nameExpires(sha3('test2'))
     assert.equal(newExpiry - oldExpiry, 86400)
     // Check any excess funds are returned
-    assert.equal(await web3.eth.getBalance(bulkRenewal.address), 0)
+    assert.equal(await web3.jfin.getBalance(bulkRenewal.address), 0)
   })
 })

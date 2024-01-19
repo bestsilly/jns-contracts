@@ -14,8 +14,8 @@ contract('LinearPremiumPriceOracle', function (accounts) {
 
   before(async () => {
     ens = await ENS.new()
-    registrar = await BaseRegistrar.new(ens.address, namehash.hash('eth'))
-    await ens.setSubnodeOwner('0x0', sha3('eth'), registrar.address)
+    registrar = await BaseRegistrar.new(ens.address, namehash.hash('jfin'))
+    await ens.setSubnodeOwner('0x0', sha3('jfin'), registrar.address)
     await registrar.addController(accounts[0])
 
     // Dummy oracle with 1 ETH == 2 USD
@@ -67,13 +67,13 @@ contract('LinearPremiumPriceOracle', function (accounts) {
   })
 
   it('should not specify a premium for renewals', async () => {
-    const ts = (await web3.eth.getBlock('latest')).timestamp
+    const ts = (await web3.jfin.getBlock('latest')).timestamp
     assert.equal((await priceOracle.premium('foobar', ts, 0)).toNumber(), 0)
     assert.equal(parseInt((await priceOracle.price('foobar', ts, 0)).base), 0)
   })
 
   it('should specify the maximum premium at the moment of expiration', async () => {
-    const ts = (await web3.eth.getBlock('latest')).timestamp - 90 * DAY
+    const ts = (await web3.jfin.getBlock('latest')).timestamp - 90 * DAY
     assert.equal(
       (await priceOracle.premium('foobar', ts, 0)).toString(),
       '50000000000000000000',
@@ -86,7 +86,7 @@ contract('LinearPremiumPriceOracle', function (accounts) {
 
   it('should specify half the premium after half the interval', async () => {
     const ts =
-      (await web3.eth.getBlock('latest')).timestamp - (90 * DAY + 50000)
+      (await web3.jfin.getBlock('latest')).timestamp - (90 * DAY + 50000)
     assert.equal(
       (await priceOracle.premium('foobar', ts, 0)).toString(),
       '25000000000000000000',
