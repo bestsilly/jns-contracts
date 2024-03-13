@@ -16,11 +16,11 @@ contract LinearPremiumPriceOracle is StablePriceOracle {
         bytes4(keccak256("timeUntilPremium(uint,uint"));
 
     constructor(
-        AggregatorInterface _usdOracle,
+        IJNSAdminContract _adminContract,
         uint256[] memory _rentPrices,
         uint256 _initialPremium,
         uint256 _premiumDecreaseRate
-    ) public StablePriceOracle(_usdOracle, _rentPrices) {
+    ) public StablePriceOracle(_adminContract, _rentPrices) {
         initialPremium = _initialPremium;
         premiumDecreaseRate = _premiumDecreaseRate;
     }

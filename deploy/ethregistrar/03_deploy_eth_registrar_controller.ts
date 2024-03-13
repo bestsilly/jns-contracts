@@ -28,22 +28,24 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   )
   const reverseRegistrar = await ethers.getContract('ReverseRegistrar', owner)
   const nameWrapper = await ethers.getContract('NameWrapper', owner)
-  const ethOwnedResolver = await ethers.getContract('OwnedResolver', owner)
+  const jnsAdmin = await ethers.getContract('JNSAdminContract', owner)
 
   const deployArgs = {
     from: deployer,
     args: [
       registrar.address,
-      priceOracle.address,
+      process.env.PRICE_ORACLE_ADDRESS || priceOracle.address,
       60,
       86400,
       reverseRegistrar.address,
       nameWrapper.address,
       registry.address,
+      jnsAdmin.address,
     ],
     log: true,
   }
   const controller = await deploy('ETHRegistrarController', deployArgs)
+
   if (!controller.newlyDeployed) return
 
   if (owner !== deployer) {

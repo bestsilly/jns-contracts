@@ -1,10 +1,11 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ~0.8.17;
+pragma solidity >=0.8.17 <9.0.0;
 
 import "./IPriceOracle.sol";
 import "./StringUtils.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
+import {IJNSAdminContract} from "jns-admin-contract/contracts/IJNSAdminContract.sol";
 
 interface AggregatorInterface {
     function latestAnswer() external view returns (int256);
@@ -21,13 +22,16 @@ contract StablePriceOracle is IPriceOracle {
     uint256 public immutable price4Letter;
     uint256 public immutable price5Letter;
 
-    // Oracle address
-    AggregatorInterface public immutable usdOracle;
+    // JNS Admin Contract
+    IJNSAdminContract public adminContract;
 
     event RentPriceChanged(uint256[] prices);
 
-    constructor(AggregatorInterface _usdOracle, uint256[] memory _rentPrices) {
-        usdOracle = _usdOracle;
+    constructor(
+        IJNSAdminContract _adminContract,
+        uint256[] memory _rentPrices
+    ) {
+        adminContract = _adminContract;
         price1Letter = _rentPrices[0];
         price2Letter = _rentPrices[1];
         price3Letter = _rentPrices[2];
@@ -85,11 +89,17 @@ contract StablePriceOracle is IPriceOracle {
     }
 
     function attoUSDToWei(uint256 amount) internal view returns (uint256) {
+        AggregatorInterface usdOracle = AggregatorInterface(
+            adminContract.oracleAddress()
+        );
         uint256 ethPrice = uint256(usdOracle.latestAnswer());
         return (amount * 1e8) / ethPrice;
     }
 
     function weiToAttoUSD(uint256 amount) internal view returns (uint256) {
+        AggregatorInterface usdOracle = AggregatorInterface(
+            adminContract.oracleAddress()
+        );
         uint256 ethPrice = uint256(usdOracle.latestAnswer());
         return (amount * ethPrice) / 1e8;
     }

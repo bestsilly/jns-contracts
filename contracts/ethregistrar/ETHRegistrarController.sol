@@ -14,6 +14,7 @@ import {IERC165} from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 import {Address} from "@openzeppelin/contracts/utils/Address.sol";
 import {INameWrapper} from "../wrapper/INameWrapper.sol";
 import {ERC20Recoverable} from "../utils/ERC20Recoverable.sol";
+import {JNSAdminContract} from "jns-admin-contract/contracts/JNSAdminContract.sol";
 
 error CommitmentTooNew(bytes32 commitment);
 error CommitmentTooOld(bytes32 commitment);
@@ -26,6 +27,7 @@ error InsufficientValue();
 error Unauthorised(bytes32 node);
 error MaxCommitmentAgeTooLow();
 error MaxCommitmentAgeTooHigh();
+error NameNotWhitelisted(string name);
 
 /**
  * @dev A registrar controller for registering and renewing names at fixed cost.
@@ -50,6 +52,7 @@ contract ETHRegistrarController is
     uint256 public immutable maxCommitmentAge;
     ReverseRegistrar public immutable reverseRegistrar;
     INameWrapper public immutable nameWrapper;
+    JNSAdminContract public immutable jnsAdmin;
 
     mapping(bytes32 => uint256) public commitments;
 
@@ -75,7 +78,8 @@ contract ETHRegistrarController is
         uint256 _maxCommitmentAge,
         ReverseRegistrar _reverseRegistrar,
         INameWrapper _nameWrapper,
-        ENS _ens
+        ENS _ens,
+        JNSAdminContract _jnsAdmin
     ) ReverseClaimer(_ens, msg.sender) {
         if (_maxCommitmentAge <= _minCommitmentAge) {
             revert MaxCommitmentAgeTooLow();
@@ -91,6 +95,7 @@ contract ETHRegistrarController is
         maxCommitmentAge = _maxCommitmentAge;
         reverseRegistrar = _reverseRegistrar;
         nameWrapper = _nameWrapper;
+        jnsAdmin = _jnsAdmin;
     }
 
     function rentPrice(
@@ -164,6 +169,10 @@ contract ETHRegistrarController is
             revert InsufficientValue();
         }
 
+        if (!jnsAdmin.isWordWhitelisted(name)) {
+            revert NameNotWhitelisted(name);
+        }
+
         _consumeCommitment(
             name,
             duration,
@@ -231,7 +240,7 @@ contract ETHRegistrarController is
     }
 
     function withdraw() public {
-        payable(owner()).transfer(address(this).balance);
+        payable(address(jnsAdmin)).transfer(address(this).balance);
     }
 
     function supportsInterface(
