@@ -70,6 +70,15 @@ contract ETHRegistrarController is
         uint256 cost,
         uint256 expires
     );
+    event NameRegisteredWithId(
+        string name,
+        bytes32 indexed label,
+        address indexed owner,
+        uint256 baseCost,
+        uint256 premium,
+        uint256 expires,
+        string id
+    );
 
     constructor(
         BaseRegistrarImplementation _base,
@@ -154,6 +163,39 @@ contract ETHRegistrarController is
         commitments[commitment] = block.timestamp;
     }
 
+    function registerWithId(
+        string calldata name,
+        address owner,
+        uint256 duration,
+        bytes32 secret,
+        address resolver,
+        bytes[] calldata data,
+        bool reverseRecord,
+        uint16 ownerControlledFuses,
+        string calldata id
+    ) public payable {
+        (uint256 baseCost, uint256 premium, uint256 expires) = register(
+            name,
+            owner,
+            duration,
+            secret,
+            resolver,
+            data,
+            reverseRecord,
+            ownerControlledFuses
+        );
+
+        emit NameRegisteredWithId(
+            name,
+            keccak256(bytes(name)),
+            owner,
+            baseCost,
+            premium,
+            expires,
+            id
+        );
+    }
+
     function register(
         string calldata name,
         address owner,
@@ -163,7 +205,12 @@ contract ETHRegistrarController is
         bytes[] calldata data,
         bool reverseRecord,
         uint16 ownerControlledFuses
-    ) public payable override {
+    )
+        public
+        payable
+        override
+        returns (uint256 baseCost, uint256 premium, uint256 expires)
+    {
         IPriceOracle.Price memory price = rentPrice(name, duration);
         if (msg.value < price.base + price.premium) {
             revert InsufficientValue();
@@ -218,6 +265,8 @@ contract ETHRegistrarController is
                 msg.value - (price.base + price.premium)
             );
         }
+
+        return (price.base, price.premium, expires);
     }
 
     function renew(
