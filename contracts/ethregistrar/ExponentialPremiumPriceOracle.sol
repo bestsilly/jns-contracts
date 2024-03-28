@@ -10,10 +10,9 @@ contract ExponentialPremiumPriceOracle is StablePriceOracle {
 
     constructor(
         IJNSAdminContract _adminContract,
-        uint256[] memory _rentPrices,
         uint256 _startPremium,
         uint256 totalDays
-    ) StablePriceOracle(_adminContract, _rentPrices) {
+    ) StablePriceOracle(_adminContract) {
         startPremium = _startPremium;
         endValue = _startPremium >> totalDays;
     }

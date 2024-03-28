@@ -13,6 +13,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       process.env.RECIPIENT_ADMIN_ADDRESS || owner,
       process.env.ORACLE_ADMIN_ADDRESS || owner,
       process.env.RECIPIENT_ADDRESS || owner,
+      [0, 0, '39999900000000', '9999900000000', '299900000000'],
     ],
     log: true,
   }
@@ -25,7 +26,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   if (network.name !== 'mainnet') {
     const dummyOracle = await deploy('DummyOracle', {
       from: deployer,
-      args: ['160000000000'],
+      args: ['31536000'],
       log: true,
     })
     oracleAddress = dummyOracle.address
@@ -33,12 +34,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   await deploy('ExponentialPremiumPriceOracle', {
     from: deployer,
-    args: [
-      jnsAdminContract.address,
-      [0, 0, '20294266869609', '5073566717402', '158548959919'],
-      '100000000000000000000000000',
-      21,
-    ],
+    args: [jnsAdminContract.address, '100000000000000000000000000', 21],
     log: true,
   })
 
