@@ -74,11 +74,10 @@ contract ETHRegistrarController is
         string name,
         bytes32 indexed label,
         address indexed owner,
-        uint256 baseCost,
-        uint256 premium,
-        uint256 expires,
         string id
     );
+
+    event FundsWithdrawn(address to, uint256 amount);
 
     constructor(
         BaseRegistrarImplementation _base,
@@ -125,26 +124,33 @@ contract ETHRegistrarController is
     }
 
     function makeCommitment(
-        RegistrationParams memory params
+        string memory name,
+        address owner,
+        uint256 duration,
+        bytes32 secret,
+        address resolver,
+        bytes[] calldata data,
+        bool reverseRecord,
+        uint16 ownerControlledFuses
     ) public pure override returns (bytes32) {
-        bytes32 label = keccak256(bytes(params.name));
-        if (params.resolver == address(0) && params.reverseRecord == true) {
+        bytes32 label = keccak256(bytes(name));
+        if (resolver == address(0) && reverseRecord == true) {
             revert ResolverRequiredWhenReverseRecord();
         }
-        if (params.data.length > 0 && params.resolver == address(0)) {
+        if (data.length > 0 && resolver == address(0)) {
             revert ResolverRequiredWhenDataSupplied();
         }
         return
             keccak256(
                 abi.encode(
                     label,
-                    params.owner,
-                    params.duration,
-                    params.secret,
-                    params.resolver,
-                    params.data,
-                    params.reverseRecord,
-                    params.ownerControlledFuses
+                    owner,
+                    duration,
+                    secret,
+                    resolver,
+                    data,
+                    reverseRecord,
+                    ownerControlledFuses
                 )
             );
     }
@@ -157,79 +163,84 @@ contract ETHRegistrarController is
     }
 
     function registerWithId(
-        RegistrationParams calldata params,
-        string calldata id
+        string calldata _name,
+        address _owner,
+        uint256 _duration,
+        bytes32 _secret,
+        address _resolver,
+        bytes[] calldata _data,
+        bool _reverseRecord,
+        uint16 _ownerControlledFuses,
+        string calldata _id
     ) public payable {
-        (uint256 baseCost, uint256 premium, uint256 expires) = register(params);
-
-        emit NameRegisteredWithId(
-            params.name,
-            keccak256(bytes(params.name)),
-            params.owner,
-            baseCost,
-            premium,
-            expires,
-            id
+        register(
+            _name,
+            _owner,
+            _duration,
+            _secret,
+            _resolver,
+            _data,
+            _reverseRecord,
+            _ownerControlledFuses
         );
-    }
 
-    function _validatePayment(
-        string memory name,
-        uint256 duration
-    ) internal returns (IPriceOracle.Price memory price) {
-        price = rentPrice(name, duration);
-        if (msg.value < price.base + price.premium) {
-            revert InsufficientValue();
-        }
+        emit NameRegisteredWithId(_name, keccak256(bytes(_name)), _owner, _id);
     }
 
     function register(
-        RegistrationParams calldata params
-    )
-        public
-        payable
-        override
-        returns (uint256 baseCost, uint256 premium, uint256 expires)
-    {
-        IPriceOracle.Price memory price = _validatePayment(
-            params.name,
-            params.duration
-        );
+        string calldata name,
+        address owner,
+        uint256 duration,
+        bytes32 secret,
+        address resolver,
+        bytes[] calldata data,
+        bool reverseRecord,
+        uint16 ownerControlledFuses
+    ) public payable override {
+        IPriceOracle.Price memory price = rentPrice(name, duration);
+        if (msg.value < price.base + price.premium) {
+            revert InsufficientValue();
+        }
 
-        if (!jnsAdmin.isWordWhitelisted(params.name)) {
-            revert NameNotWhitelisted(params.name);
+        if (!jnsAdmin.isWordWhitelisted(name)) {
+            revert NameNotWhitelisted(name);
         }
 
         _consumeCommitment(
-            params.name,
-            params.duration,
-            makeCommitment(params)
+            name,
+            duration,
+            makeCommitment(
+                name,
+                owner,
+                duration,
+                secret,
+                resolver,
+                data,
+                reverseRecord,
+                ownerControlledFuses
+            )
         );
 
-        expires = nameWrapper.registerAndWrapETH2LD(
-            params.name,
-            params.owner,
-            params.duration,
-            params.resolver,
-            params.ownerControlledFuses
+        uint256 expires = nameWrapper.registerAndWrapETH2LD(
+            name,
+            owner,
+            duration,
+            resolver,
+            ownerControlledFuses
         );
 
-        if (params.data.length > 0) {
-            _setRecords(
-                params.resolver,
-                keccak256(bytes(params.name)),
-                params.data
-            );
+        if (data.length > 0) {
+            _setRecords(resolver, keccak256(bytes(name)), data);
         }
 
-        if (params.reverseRecord) {
-            _setReverseRecord(params.name, params.resolver, msg.sender);
+        if (reverseRecord) {
+            _setReverseRecord(name, resolver, msg.sender);
         }
 
         emit NameRegistered(
-            params.name,
-            keccak256(bytes(params.name)),
-            params.owner,
+            name,
+            keccak256(bytes(name)),
+            owner,
             price.base,
             price.premium,
             expires
@@ -240,8 +251,6 @@ contract ETHRegistrarController is
                 msg.value - (price.base + price.premium)
             );
         }
-
-        return (price.base, price.premium, expires);
     }
 
     function renew(
@@ -263,8 +272,11 @@ contract ETHRegistrarController is
         emit NameRenewed(name, labelhash, msg.value, expires);
     }
 
-    function withdraw() public {
-        payable(address(jnsAdmin)).transfer(address(this).balance);
+    function withdraw() public onlyOwner {
+        uint256 balance = address(this).balance;
+        (bool success, ) = payable(address(jnsAdmin)).call{value: balance}("");
+        require(success, "Transfer failed.");
+        emit FundsWithdrawn(address(jnsAdmin), balance);
     }
 
     function supportsInterface(
