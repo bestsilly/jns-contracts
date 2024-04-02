@@ -17,10 +17,9 @@ contract LinearPremiumPriceOracle is StablePriceOracle {
 
     constructor(
         IJNSAdminContract _adminContract,
-        uint256[] memory _rentPrices,
         uint256 _initialPremium,
         uint256 _premiumDecreaseRate
-    ) public StablePriceOracle(_adminContract, _rentPrices) {
+    ) public StablePriceOracle(_adminContract) {
         initialPremium = _initialPremium;
         premiumDecreaseRate = _premiumDecreaseRate;
     }
