@@ -29,7 +29,7 @@ error InsufficientValue();
 error Unauthorised(bytes32 node);
 error MaxCommitmentAgeTooLow();
 error MaxCommitmentAgeTooHigh();
-error NameNotWhitelisted(string name);
+error NameIsInvalid(string name);
 
 /**
  * @dev A registrar controller for registering and renewing names at fixed cost.
@@ -206,10 +206,8 @@ contract ETHRegistrarController is
             revert InsufficientValue();
         }
 
-        if (
-            !INameManager(jnsAdmin.nameManagerAddress()).isWordWhitelisted(name)
-        ) {
-            revert NameNotWhitelisted(name);
+        if (!INameManager(jnsAdmin.nameManagerAddress()).isValid(name)) {
+            revert NameIsInvalid(name);
         }
 
         _consumeCommitment(
