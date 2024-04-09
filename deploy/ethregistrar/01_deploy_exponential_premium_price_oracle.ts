@@ -12,6 +12,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     args: [
       process.env.RECIPIENT_ADMIN_ADDRESS || owner,
       process.env.ORACLE_ADMIN_ADDRESS || owner,
+      process.env.NAME_MANAGER || owner,
       process.env.RECIPIENT_ADDRESS || owner,
       [0, 0, '39999900000000', '9999900000000', '299900000000'],
     ],
@@ -45,6 +46,14 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     .changeOracleAddress(oracleAddress)
   console.log(`Oracle address updated to ${oracleAddress}`)
   await tx.wait()
+
+  const nameManagerArgs = {
+    from: deployer,
+    args: [jnsAdminContract.address],
+    log: true,
+  }
+
+  await deploy('NameManager', nameManagerArgs)
 }
 
 func.id = 'price-oracle'

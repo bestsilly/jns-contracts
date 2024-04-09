@@ -8,11 +8,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   // TODO: Change metadataHost
   let metadataHost =
-    process.env.METADATA_HOST || 'ens-metadata-service.appspot.com'
-
-  if (network.name === 'jfintestnet') {
-    metadataHost = 'https://ens-metadata-service-411410.de.r.appspot.com'
-  }
+    process.env.METADATA_HOST || 'jns-metadata.testnet.jfinchain.com'
 
   const metadataUrl = `${metadataHost}/name/0x{id}`
 

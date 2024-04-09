@@ -15,6 +15,8 @@ import {Address} from "@openzeppelin/contracts/utils/Address.sol";
 import {INameWrapper} from "../wrapper/INameWrapper.sol";
 import {ERC20Recoverable} from "../utils/ERC20Recoverable.sol";
 import {JNSAdminContract} from "jns-admin-contract/contracts/JNSAdminContract.sol";
+import {NameManager} from "jns-admin-contract/contracts/NameManager.sol";
+import {INameManager} from "jns-admin-contract/contracts/INameManager.sol";
 
 error CommitmentTooNew(bytes32 commitment);
 error CommitmentTooOld(bytes32 commitment);
@@ -187,6 +189,8 @@ contract ETHRegistrarController is
         emit NameRegisteredWithId(_name, keccak256(bytes(_name)), _owner, _id);
     }
 
+    mapping(bytes32 => string) public names;
+
     function register(
         string calldata name,
         address owner,
@@ -202,7 +206,9 @@ contract ETHRegistrarController is
             revert InsufficientValue();
         }
 
-        if (!jnsAdmin.isWordWhitelisted(name)) {
+        if (
+            !INameManager(jnsAdmin.nameManagerAddress()).isWordWhitelisted(name)
+        ) {
             revert NameNotWhitelisted(name);
         }
 
@@ -229,17 +235,21 @@ contract ETHRegistrarController is
             ownerControlledFuses
         );
 
+        bytes32 label = keccak256(bytes(name));
+
         if (data.length > 0) {
-            _setRecords(resolver, keccak256(bytes(name)), data);
+            _setRecords(resolver, label, data);
         }
 
         if (reverseRecord) {
             _setReverseRecord(name, resolver, msg.sender);
         }
 
+        names[label] = name;
+
         emit NameRegistered(
             name,
-            keccak256(bytes(name)),
+            label,
             owner,
             price.base,
             price.premium,
@@ -272,7 +282,7 @@ contract ETHRegistrarController is
         emit NameRenewed(name, labelhash, msg.value, expires);
     }
 
-    function withdraw() public onlyOwner {
+    function withdraw() public {
         uint256 balance = address(this).balance;
         (bool success, ) = payable(address(jnsAdmin)).call{value: balance}("");
         require(success, "Transfer failed.");
