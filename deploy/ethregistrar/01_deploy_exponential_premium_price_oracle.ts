@@ -47,9 +47,20 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Oracle address updated to ${oracleAddress}`)
   await tx.wait()
 
-  const nameManagerArgs = {
+  const nameManagerDataStoreArgs = {
     from: deployer,
     args: [jnsAdminContract.address],
+    log: true,
+  }
+
+  const nameManagerDataStore = await deploy(
+    'NameManagerDataStore',
+    nameManagerDataStoreArgs,
+  )
+
+  const nameManagerArgs = {
+    from: deployer,
+    args: [jnsAdminContract.address, nameManagerDataStore.address],
     log: true,
   }
 

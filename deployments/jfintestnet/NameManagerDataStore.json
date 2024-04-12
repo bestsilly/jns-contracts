@@ -1,0 +1,377 @@
+{
+  "address": "0x8bE7B6F784C89beB5Fa107B2Bd021D31F8B1BABB",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_adminContractAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "NAME_MANAGER_ROLE",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "hash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "addRestrictedWord",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "hash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "addTakedown",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint32",
+          "name": "character",
+          "type": "uint32"
+        }
+      ],
+      "name": "addWhitelistCharacter",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "adminContract",
+      "outputs": [
+        {
+          "internalType": "contract IJNSAdminContract",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getHashedRestrictedWords",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "",
+          "type": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getHashedTakenDownList",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "",
+          "type": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "hash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "isRestrictedWord",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "hash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "isTakedown",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint32",
+          "name": "character",
+          "type": "uint32"
+        }
+      ],
+      "name": "isWhitelistCharacter",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "hash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "removeRestrictedWord",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "hash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "removeTakedown",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint32",
+          "name": "character",
+          "type": "uint32"
+        }
+      ],
+      "name": "removeWhitelistCharacter",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint32",
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "name": "whitelistCharacters",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x7ebcdf2ac657c87c9623da326b8d64ceb05468edfe3b1ef5f7ae3a7c9a36b5e0",
+  "receipt": {
+    "to": null,
+    "from": "0x26c0d1c4F49C59ACc3E818749758917bBe946d06",
+    "contractAddress": "0x8bE7B6F784C89beB5Fa107B2Bd021D31F8B1BABB",
+    "transactionIndex": 0,
+    "gasUsed": "1464234",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x8908a6a603b783c671610973542e68eded406950c08b302c6d0263737da0d492",
+    "transactionHash": "0x7ebcdf2ac657c87c9623da326b8d64ceb05468edfe3b1ef5f7ae3a7c9a36b5e0",
+    "logs": [],
+    "blockNumber": 18267862,
+    "cumulativeGasUsed": "1464234",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x1A18C4699273746c335d2d97fBa51E638f080B2E"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "d69af7ebb9af7866df34efb40b2e6557",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_adminContractAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"NAME_MANAGER_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"}],\"name\":\"addRestrictedWord\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"}],\"name\":\"addTakedown\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"character\",\"type\":\"uint32\"}],\"name\":\"addWhitelistCharacter\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"adminContract\",\"outputs\":[{\"internalType\":\"contract IJNSAdminContract\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getHashedRestrictedWords\",\"outputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"\",\"type\":\"bytes32[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getHashedTakenDownList\",\"outputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"\",\"type\":\"bytes32[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"}],\"name\":\"isRestrictedWord\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"}],\"name\":\"isTakedown\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"character\",\"type\":\"uint32\"}],\"name\":\"isWhitelistCharacter\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"}],\"name\":\"removeRestrictedWord\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"}],\"name\":\"removeTakedown\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"character\",\"type\":\"uint32\"}],\"name\":\"removeWhitelistCharacter\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"name\":\"whitelistCharacters\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"jns-admin-contract/contracts/NameManagerDataStore.sol\":\"NameManagerDataStore\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":1200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/access/IAccessControl.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.1 (access/IAccessControl.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev External interface of AccessControl declared to support ERC165 detection.\\n */\\ninterface IAccessControl {\\n    /**\\n     * @dev Emitted when `newAdminRole` is set as ``role``'s admin role, replacing `previousAdminRole`\\n     *\\n     * `DEFAULT_ADMIN_ROLE` is the starting admin for all roles, despite\\n     * {RoleAdminChanged} not being emitted signaling this.\\n     *\\n     * _Available since v3.1._\\n     */\\n    event RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole);\\n\\n    /**\\n     * @dev Emitted when `account` is granted `role`.\\n     *\\n     * `sender` is the account that originated the contract call, an admin role\\n     * bearer except when using {AccessControl-_setupRole}.\\n     */\\n    event RoleGranted(bytes32 indexed role, address indexed account, address indexed sender);\\n\\n    /**\\n     * @dev Emitted when `account` is revoked `role`.\\n     *\\n     * `sender` is the account that originated the contract call:\\n     *   - if using `revokeRole`, it is the admin role bearer\\n     *   - if using `renounceRole`, it is the role bearer (i.e. `account`)\\n     */\\n    event RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender);\\n\\n    /**\\n     * @dev Returns `true` if `account` has been granted `role`.\\n     */\\n    function hasRole(bytes32 role, address account) external view returns (bool);\\n\\n    /**\\n     * @dev Returns the admin role that controls `role`. See {grantRole} and\\n     * {revokeRole}.\\n     *\\n     * To change a role's admin, use {AccessControl-_setRoleAdmin}.\\n     */\\n    function getRoleAdmin(bytes32 role) external view returns (bytes32);\\n\\n    /**\\n     * @dev Grants `role` to `account`.\\n     *\\n     * If `account` had not been already granted `role`, emits a {RoleGranted}\\n     * event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must have ``role``'s admin role.\\n     */\\n    function grantRole(bytes32 role, address account) external;\\n\\n    /**\\n     * @dev Revokes `role` from `account`.\\n     *\\n     * If `account` had been granted `role`, emits a {RoleRevoked} event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must have ``role``'s admin role.\\n     */\\n    function revokeRole(bytes32 role, address account) external;\\n\\n    /**\\n     * @dev Revokes `role` from the calling account.\\n     *\\n     * Roles are often managed via {grantRole} and {revokeRole}: this function's\\n     * purpose is to provide a mechanism for accounts to lose their privileges\\n     * if they are compromised (such as when a trusted device is misplaced).\\n     *\\n     * If the calling account had been granted `role`, emits a {RoleRevoked}\\n     * event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must be `account`.\\n     */\\n    function renounceRole(bytes32 role, address account) external;\\n}\\n\",\"keccak256\":\"0x59ce320a585d7e1f163cd70390a0ef2ff9cec832e2aa544293a00692465a7a57\",\"license\":\"MIT\"},\"@openzeppelin/contracts/access/IAccessControlDefaultAdminRules.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v4.9.0) (access/IAccessControlDefaultAdminRules.sol)\\n\\npragma solidity ^0.8.0;\\n\\nimport \\\"./IAccessControl.sol\\\";\\n\\n/**\\n * @dev External interface of AccessControlDefaultAdminRules declared to support ERC165 detection.\\n *\\n * _Available since v4.9._\\n */\\ninterface IAccessControlDefaultAdminRules is IAccessControl {\\n    /**\\n     * @dev Emitted when a {defaultAdmin} transfer is started, setting `newAdmin` as the next\\n     * address to become the {defaultAdmin} by calling {acceptDefaultAdminTransfer} only after `acceptSchedule`\\n     * passes.\\n     */\\n    event DefaultAdminTransferScheduled(address indexed newAdmin, uint48 acceptSchedule);\\n\\n    /**\\n     * @dev Emitted when a {pendingDefaultAdmin} is reset if it was never accepted, regardless of its schedule.\\n     */\\n    event DefaultAdminTransferCanceled();\\n\\n    /**\\n     * @dev Emitted when a {defaultAdminDelay} change is started, setting `newDelay` as the next\\n     * delay to be applied between default admin transfer after `effectSchedule` has passed.\\n     */\\n    event DefaultAdminDelayChangeScheduled(uint48 newDelay, uint48 effectSchedule);\\n\\n    /**\\n     * @dev Emitted when a {pendingDefaultAdminDelay} is reset if its schedule didn't pass.\\n     */\\n    event DefaultAdminDelayChangeCanceled();\\n\\n    /**\\n     * @dev Returns the address of the current `DEFAULT_ADMIN_ROLE` holder.\\n     */\\n    function defaultAdmin() external view returns (address);\\n\\n    /**\\n     * @dev Returns a tuple of a `newAdmin` and an accept schedule.\\n     *\\n     * After the `schedule` passes, the `newAdmin` will be able to accept the {defaultAdmin} role\\n     * by calling {acceptDefaultAdminTransfer}, completing the role transfer.\\n     *\\n     * A zero value only in `acceptSchedule` indicates no pending admin transfer.\\n     *\\n     * NOTE: A zero address `newAdmin` means that {defaultAdmin} is being renounced.\\n     */\\n    function pendingDefaultAdmin() external view returns (address newAdmin, uint48 acceptSchedule);\\n\\n    /**\\n     * @dev Returns the delay required to schedule the acceptance of a {defaultAdmin} transfer started.\\n     *\\n     * This delay will be added to the current timestamp when calling {beginDefaultAdminTransfer} to set\\n     * the acceptance schedule.\\n     *\\n     * NOTE: If a delay change has been scheduled, it will take effect as soon as the schedule passes, making this\\n     * function returns the new delay. See {changeDefaultAdminDelay}.\\n     */\\n    function defaultAdminDelay() external view returns (uint48);\\n\\n    /**\\n     * @dev Returns a tuple of `newDelay` and an effect schedule.\\n     *\\n     * After the `schedule` passes, the `newDelay` will get into effect immediately for every\\n     * new {defaultAdmin} transfer started with {beginDefaultAdminTransfer}.\\n     *\\n     * A zero value only in `effectSchedule` indicates no pending delay change.\\n     *\\n     * NOTE: A zero value only for `newDelay` means that the next {defaultAdminDelay}\\n     * will be zero after the effect schedule.\\n     */\\n    function pendingDefaultAdminDelay() external view returns (uint48 newDelay, uint48 effectSchedule);\\n\\n    /**\\n     * @dev Starts a {defaultAdmin} transfer by setting a {pendingDefaultAdmin} scheduled for acceptance\\n     * after the current timestamp plus a {defaultAdminDelay}.\\n     *\\n     * Requirements:\\n     *\\n     * - Only can be called by the current {defaultAdmin}.\\n     *\\n     * Emits a DefaultAdminRoleChangeStarted event.\\n     */\\n    function beginDefaultAdminTransfer(address newAdmin) external;\\n\\n    /**\\n     * @dev Cancels a {defaultAdmin} transfer previously started with {beginDefaultAdminTransfer}.\\n     *\\n     * A {pendingDefaultAdmin} not yet accepted can also be cancelled with this function.\\n     *\\n     * Requirements:\\n     *\\n     * - Only can be called by the current {defaultAdmin}.\\n     *\\n     * May emit a DefaultAdminTransferCanceled event.\\n     */\\n    function cancelDefaultAdminTransfer() external;\\n\\n    /**\\n     * @dev Completes a {defaultAdmin} transfer previously started with {beginDefaultAdminTransfer}.\\n     *\\n     * After calling the function:\\n     *\\n     * - `DEFAULT_ADMIN_ROLE` should be granted to the caller.\\n     * - `DEFAULT_ADMIN_ROLE` should be revoked from the previous holder.\\n     * - {pendingDefaultAdmin} should be reset to zero values.\\n     *\\n     * Requirements:\\n     *\\n     * - Only can be called by the {pendingDefaultAdmin}'s `newAdmin`.\\n     * - The {pendingDefaultAdmin}'s `acceptSchedule` should've passed.\\n     */\\n    function acceptDefaultAdminTransfer() external;\\n\\n    /**\\n     * @dev Initiates a {defaultAdminDelay} update by setting a {pendingDefaultAdminDelay} scheduled for getting\\n     * into effect after the current timestamp plus a {defaultAdminDelay}.\\n     *\\n     * This function guarantees that any call to {beginDefaultAdminTransfer} done between the timestamp this\\n     * method is called and the {pendingDefaultAdminDelay} effect schedule will use the current {defaultAdminDelay}\\n     * set before calling.\\n     *\\n     * The {pendingDefaultAdminDelay}'s effect schedule is defined in a way that waiting until the schedule and then\\n     * calling {beginDefaultAdminTransfer} with the new delay will take at least the same as another {defaultAdmin}\\n     * complete transfer (including acceptance).\\n     *\\n     * The schedule is designed for two scenarios:\\n     *\\n     * - When the delay is changed for a larger one the schedule is `block.timestamp + newDelay` capped by\\n     * {defaultAdminDelayIncreaseWait}.\\n     * - When the delay is changed for a shorter one, the schedule is `block.timestamp + (current delay - new delay)`.\\n     *\\n     * A {pendingDefaultAdminDelay} that never got into effect will be canceled in favor of a new scheduled change.\\n     *\\n     * Requirements:\\n     *\\n     * - Only can be called by the current {defaultAdmin}.\\n     *\\n     * Emits a DefaultAdminDelayChangeScheduled event and may emit a DefaultAdminDelayChangeCanceled event.\\n     */\\n    function changeDefaultAdminDelay(uint48 newDelay) external;\\n\\n    /**\\n     * @dev Cancels a scheduled {defaultAdminDelay} change.\\n     *\\n     * Requirements:\\n     *\\n     * - Only can be called by the current {defaultAdmin}.\\n     *\\n     * May emit a DefaultAdminDelayChangeCanceled event.\\n     */\\n    function rollbackDefaultAdminDelay() external;\\n\\n    /**\\n     * @dev Maximum time in seconds for an increase to {defaultAdminDelay} (that is scheduled using {changeDefaultAdminDelay})\\n     * to take effect. Default to 5 days.\\n     *\\n     * When the {defaultAdminDelay} is scheduled to be increased, it goes into effect after the new delay has passed with\\n     * the purpose of giving enough time for reverting any accidental change (i.e. using milliseconds instead of seconds)\\n     * that may lock the contract. However, to avoid excessive schedules, the wait is capped by this function and it can\\n     * be overrode for a custom {defaultAdminDelay} increase scheduling.\\n     *\\n     * IMPORTANT: Make sure to add a reasonable amount of time while overriding this value, otherwise,\\n     * there's a risk of setting a high new delay that goes into effect almost immediately without the\\n     * possibility of human intervention in the case of an input error (eg. set milliseconds instead of seconds).\\n     */\\n    function defaultAdminDelayIncreaseWait() external view returns (uint48);\\n}\\n\",\"keccak256\":\"0x4025f2c243843858eba5f4588189430189a6712f12183d9b4e2e876550428a0d\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/structs/EnumerableSet.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v4.9.0) (utils/structs/EnumerableSet.sol)\\n// This file was procedurally generated from scripts/generate/templates/EnumerableSet.js.\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev Library for managing\\n * https://en.wikipedia.org/wiki/Set_(abstract_data_type)[sets] of primitive\\n * types.\\n *\\n * Sets have the following properties:\\n *\\n * - Elements are added, removed, and checked for existence in constant time\\n * (O(1)).\\n * - Elements are enumerated in O(n). No guarantees are made on the ordering.\\n *\\n * ```solidity\\n * contract Example {\\n *     // Add the library methods\\n *     using EnumerableSet for EnumerableSet.AddressSet;\\n *\\n *     // Declare a set state variable\\n *     EnumerableSet.AddressSet private mySet;\\n * }\\n * ```\\n *\\n * As of v3.3.0, sets of type `bytes32` (`Bytes32Set`), `address` (`AddressSet`)\\n * and `uint256` (`UintSet`) are supported.\\n *\\n * [WARNING]\\n * ====\\n * Trying to delete such a structure from storage will likely result in data corruption, rendering the structure\\n * unusable.\\n * See https://github.com/ethereum/solidity/pull/11843[ethereum/solidity#11843] for more info.\\n *\\n * In order to clean an EnumerableSet, you can either remove all elements one by one or create a fresh instance using an\\n * array of EnumerableSet.\\n * ====\\n */\\nlibrary EnumerableSet {\\n    // To implement this library for multiple types with as little code\\n    // repetition as possible, we write it in terms of a generic Set type with\\n    // bytes32 values.\\n    // The Set implementation uses private functions, and user-facing\\n    // implementations (such as AddressSet) are just wrappers around the\\n    // underlying Set.\\n    // This means that we can only create new EnumerableSets for types that fit\\n    // in bytes32.\\n\\n    struct Set {\\n        // Storage of set values\\n        bytes32[] _values;\\n        // Position of the value in the `values` array, plus 1 because index 0\\n        // means a value is not in the set.\\n        mapping(bytes32 => uint256) _indexes;\\n    }\\n\\n    /**\\n     * @dev Add a value to a set. O(1).\\n     *\\n     * Returns true if the value was added to the set, that is if it was not\\n     * already present.\\n     */\\n    function _add(Set storage set, bytes32 value) private returns (bool) {\\n        if (!_contains(set, value)) {\\n            set._values.push(value);\\n            // The value is stored at length-1, but we add 1 to all indexes\\n            // and use 0 as a sentinel value\\n            set._indexes[value] = set._values.length;\\n            return true;\\n        } else {\\n            return false;\\n        }\\n    }\\n\\n    /**\\n     * @dev Removes a value from a set. O(1).\\n     *\\n     * Returns true if the value was removed from the set, that is if it was\\n     * present.\\n     */\\n    function _remove(Set storage set, bytes32 value) private returns (bool) {\\n        // We read and store the value's index to prevent multiple reads from the same storage slot\\n        uint256 valueIndex = set._indexes[value];\\n\\n        if (valueIndex != 0) {\\n            // Equivalent to contains(set, value)\\n            // To delete an element from the _values array in O(1), we swap the element to delete with the last one in\\n            // the array, and then remove the last element (sometimes called as 'swap and pop').\\n            // This modifies the order of the array, as noted in {at}.\\n\\n            uint256 toDeleteIndex = valueIndex - 1;\\n            uint256 lastIndex = set._values.length - 1;\\n\\n            if (lastIndex != toDeleteIndex) {\\n                bytes32 lastValue = set._values[lastIndex];\\n\\n                // Move the last value to the index where the value to delete is\\n                set._values[toDeleteIndex] = lastValue;\\n                // Update the index for the moved value\\n                set._indexes[lastValue] = valueIndex; // Replace lastValue's index to valueIndex\\n            }\\n\\n            // Delete the slot where the moved value was stored\\n            set._values.pop();\\n\\n            // Delete the index for the deleted slot\\n            delete set._indexes[value];\\n\\n            return true;\\n        } else {\\n            return false;\\n        }\\n    }\\n\\n    /**\\n     * @dev Returns true if the value is in the set. O(1).\\n     */\\n    function _contains(Set storage set, bytes32 value) private view returns (bool) {\\n        return set._indexes[value] != 0;\\n    }\\n\\n    /**\\n     * @dev Returns the number of values on the set. O(1).\\n     */\\n    function _length(Set storage set) private view returns (uint256) {\\n        return set._values.length;\\n    }\\n\\n    /**\\n     * @dev Returns the value stored at position `index` in the set. O(1).\\n     *\\n     * Note that there are no guarantees on the ordering of values inside the\\n     * array, and it may change when more values are added or removed.\\n     *\\n     * Requirements:\\n     *\\n     * - `index` must be strictly less than {length}.\\n     */\\n    function _at(Set storage set, uint256 index) private view returns (bytes32) {\\n        return set._values[index];\\n    }\\n\\n    /**\\n     * @dev Return the entire set in an array\\n     *\\n     * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed\\n     * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that\\n     * this function has an unbounded cost, and using it as part of a state-changing function may render the function\\n     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.\\n     */\\n    function _values(Set storage set) private view returns (bytes32[] memory) {\\n        return set._values;\\n    }\\n\\n    // Bytes32Set\\n\\n    struct Bytes32Set {\\n        Set _inner;\\n    }\\n\\n    /**\\n     * @dev Add a value to a set. O(1).\\n     *\\n     * Returns true if the value was added to the set, that is if it was not\\n     * already present.\\n     */\\n    function add(Bytes32Set storage set, bytes32 value) internal returns (bool) {\\n        return _add(set._inner, value);\\n    }\\n\\n    /**\\n     * @dev Removes a value from a set. O(1).\\n     *\\n     * Returns true if the value was removed from the set, that is if it was\\n     * present.\\n     */\\n    function remove(Bytes32Set storage set, bytes32 value) internal returns (bool) {\\n        return _remove(set._inner, value);\\n    }\\n\\n    /**\\n     * @dev Returns true if the value is in the set. O(1).\\n     */\\n    function contains(Bytes32Set storage set, bytes32 value) internal view returns (bool) {\\n        return _contains(set._inner, value);\\n    }\\n\\n    /**\\n     * @dev Returns the number of values in the set. O(1).\\n     */\\n    function length(Bytes32Set storage set) internal view returns (uint256) {\\n        return _length(set._inner);\\n    }\\n\\n    /**\\n     * @dev Returns the value stored at position `index` in the set. O(1).\\n     *\\n     * Note that there are no guarantees on the ordering of values inside the\\n     * array, and it may change when more values are added or removed.\\n     *\\n     * Requirements:\\n     *\\n     * - `index` must be strictly less than {length}.\\n     */\\n    function at(Bytes32Set storage set, uint256 index) internal view returns (bytes32) {\\n        return _at(set._inner, index);\\n    }\\n\\n    /**\\n     * @dev Return the entire set in an array\\n     *\\n     * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed\\n     * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that\\n     * this function has an unbounded cost, and using it as part of a state-changing function may render the function\\n     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.\\n     */\\n    function values(Bytes32Set storage set) internal view returns (bytes32[] memory) {\\n        bytes32[] memory store = _values(set._inner);\\n        bytes32[] memory result;\\n\\n        /// @solidity memory-safe-assembly\\n        assembly {\\n            result := store\\n        }\\n\\n        return result;\\n    }\\n\\n    // AddressSet\\n\\n    struct AddressSet {\\n        Set _inner;\\n    }\\n\\n    /**\\n     * @dev Add a value to a set. O(1).\\n     *\\n     * Returns true if the value was added to the set, that is if it was not\\n     * already present.\\n     */\\n    function add(AddressSet storage set, address value) internal returns (bool) {\\n        return _add(set._inner, bytes32(uint256(uint160(value))));\\n    }\\n\\n    /**\\n     * @dev Removes a value from a set. O(1).\\n     *\\n     * Returns true if the value was removed from the set, that is if it was\\n     * present.\\n     */\\n    function remove(AddressSet storage set, address value) internal returns (bool) {\\n        return _remove(set._inner, bytes32(uint256(uint160(value))));\\n    }\\n\\n    /**\\n     * @dev Returns true if the value is in the set. O(1).\\n     */\\n    function contains(AddressSet storage set, address value) internal view returns (bool) {\\n        return _contains(set._inner, bytes32(uint256(uint160(value))));\\n    }\\n\\n    /**\\n     * @dev Returns the number of values in the set. O(1).\\n     */\\n    function length(AddressSet storage set) internal view returns (uint256) {\\n        return _length(set._inner);\\n    }\\n\\n    /**\\n     * @dev Returns the value stored at position `index` in the set. O(1).\\n     *\\n     * Note that there are no guarantees on the ordering of values inside the\\n     * array, and it may change when more values are added or removed.\\n     *\\n     * Requirements:\\n     *\\n     * - `index` must be strictly less than {length}.\\n     */\\n    function at(AddressSet storage set, uint256 index) internal view returns (address) {\\n        return address(uint160(uint256(_at(set._inner, index))));\\n    }\\n\\n    /**\\n     * @dev Return the entire set in an array\\n     *\\n     * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed\\n     * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that\\n     * this function has an unbounded cost, and using it as part of a state-changing function may render the function\\n     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.\\n     */\\n    function values(AddressSet storage set) internal view returns (address[] memory) {\\n        bytes32[] memory store = _values(set._inner);\\n        address[] memory result;\\n\\n        /// @solidity memory-safe-assembly\\n        assembly {\\n            result := store\\n        }\\n\\n        return result;\\n    }\\n\\n    // UintSet\\n\\n    struct UintSet {\\n        Set _inner;\\n    }\\n\\n    /**\\n     * @dev Add a value to a set. O(1).\\n     *\\n     * Returns true if the value was added to the set, that is if it was not\\n     * already present.\\n     */\\n    function add(UintSet storage set, uint256 value) internal returns (bool) {\\n        return _add(set._inner, bytes32(value));\\n    }\\n\\n    /**\\n     * @dev Removes a value from a set. O(1).\\n     *\\n     * Returns true if the value was removed from the set, that is if it was\\n     * present.\\n     */\\n    function remove(UintSet storage set, uint256 value) internal returns (bool) {\\n        return _remove(set._inner, bytes32(value));\\n    }\\n\\n    /**\\n     * @dev Returns true if the value is in the set. O(1).\\n     */\\n    function contains(UintSet storage set, uint256 value) internal view returns (bool) {\\n        return _contains(set._inner, bytes32(value));\\n    }\\n\\n    /**\\n     * @dev Returns the number of values in the set. O(1).\\n     */\\n    function length(UintSet storage set) internal view returns (uint256) {\\n        return _length(set._inner);\\n    }\\n\\n    /**\\n     * @dev Returns the value stored at position `index` in the set. O(1).\\n     *\\n     * Note that there are no guarantees on the ordering of values inside the\\n     * array, and it may change when more values are added or removed.\\n     *\\n     * Requirements:\\n     *\\n     * - `index` must be strictly less than {length}.\\n     */\\n    function at(UintSet storage set, uint256 index) internal view returns (uint256) {\\n        return uint256(_at(set._inner, index));\\n    }\\n\\n    /**\\n     * @dev Return the entire set in an array\\n     *\\n     * WARNING: This operation will copy the entire storage to memory, which can be quite expensive. This is designed\\n     * to mostly be used by view accessors that are queried without any gas fees. Developers should keep in mind that\\n     * this function has an unbounded cost, and using it as part of a state-changing function may render the function\\n     * uncallable if the set grows to a point where copying to memory consumes too much gas to fit in a block.\\n     */\\n    function values(UintSet storage set) internal view returns (uint256[] memory) {\\n        bytes32[] memory store = _values(set._inner);\\n        uint256[] memory result;\\n\\n        /// @solidity memory-safe-assembly\\n        assembly {\\n            result := store\\n        }\\n\\n        return result;\\n    }\\n}\\n\",\"keccak256\":\"0x9f4357008a8f7d8c8bf5d48902e789637538d8c016be5766610901b4bba81514\",\"license\":\"MIT\"},\"jns-admin-contract/contracts/IJNSAdminContract.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.17;\\nimport \\\"@openzeppelin/contracts/access/IAccessControlDefaultAdminRules.sol\\\";\\nimport \\\"./INameManager.sol\\\";\\n\\ninterface IJNSAdminContract is IAccessControlDefaultAdminRules {\\n    function changeRecipientAddress(\\n        address payable newWithdrawalAddress\\n    ) external;\\n\\n    function changeOracleAddress(address newOracleAddress) external;\\n\\n    function setNameManagerAddress(INameManager newNameManagerAddress) external;\\n\\n    function oracleAddress() external view returns (address);\\n\\n    function setRentPrices(uint256[] calldata rentPrices) external;\\n\\n    function getRentPrices() external view returns (uint256[] memory);\\n}\\n\",\"keccak256\":\"0x412bb84a1163d8cfdf21618911b379ff9339d9c46941a56a8a229e3b8fa06e21\",\"license\":\"MIT\"},\"jns-admin-contract/contracts/INameManager.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.17;\\n\\ninterface INameManager {\\n    struct Takedown {\\n        uint256 tokenId; // JNS Token ID\\n        bytes32 namehash; // JNS Namehash\\n    }\\n\\n    function addToTakedownList(Takedown[] calldata tokenIds) external;\\n\\n    function removeFromTakedownList(Takedown[] calldata tokenIds) external;\\n\\n    function addToRestrictWords(string[] calldata words) external;\\n\\n    function removeFromRestrictWords(string[] calldata words) external;\\n\\n    function hashedTakedownList() external view returns (bytes32[] memory);\\n\\n    function hashedRestrictWords() external view returns (bytes32[] memory);\\n\\n    function isWordWhitelisted(\\n        string calldata word\\n    ) external view returns (bool);\\n\\n    function isWordRestricted(string memory word) external view returns (bool);\\n\\n    function isValid(string calldata name) external view returns (bool);\\n}\\n\",\"keccak256\":\"0x54e30b3c3f7cf391d72b95e1bb79e74f3dd71d7193cc4c7a5091d4b66072d62f\",\"license\":\"MIT\"},\"jns-admin-contract/contracts/NameManagerDataStore.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.17;\\n\\nimport \\\"@openzeppelin/contracts/utils/structs/EnumerableSet.sol\\\";\\nimport \\\"./IJNSAdminContract.sol\\\";\\n\\ncontract NameManagerDataStore {\\n    using EnumerableSet for EnumerableSet.Bytes32Set;\\n\\n    bytes32 public constant NAME_MANAGER_ROLE = keccak256(\\\"NAME_MANAGER_ROLE\\\");\\n\\n    mapping(uint32 => bool) public whitelistCharacters;\\n    EnumerableSet.Bytes32Set private takedownSet;\\n    EnumerableSet.Bytes32Set private restrictWordSet;\\n\\n    IJNSAdminContract public adminContract;\\n\\n    constructor(address _adminContractAddress) {\\n        require(\\n            _adminContractAddress != address(0),\\n            \\\"Admin contract address cannot be the zero address\\\"\\n        );\\n\\n        adminContract = IJNSAdminContract(_adminContractAddress);\\n\\n        _whitelistCharactersAndNumbers();\\n    }\\n\\n    modifier onlyNameManager() {\\n        require(\\n            adminContract.hasRole(NAME_MANAGER_ROLE, msg.sender),\\n            \\\"Caller is not a name manager\\\"\\n        );\\n        _;\\n    }\\n\\n    function addWhitelistCharacter(uint32 character) external onlyNameManager {\\n        whitelistCharacters[character] = true;\\n    }\\n\\n    function removeWhitelistCharacter(\\n        uint32 character\\n    ) external onlyNameManager {\\n        whitelistCharacters[character] = false;\\n    }\\n\\n    function isWhitelistCharacter(uint32 character) public view returns (bool) {\\n        return whitelistCharacters[character];\\n    }\\n\\n    function addTakedown(bytes32 hash) external onlyNameManager {\\n        takedownSet.add(hash);\\n    }\\n\\n    function removeTakedown(bytes32 hash) external onlyNameManager {\\n        takedownSet.remove(hash);\\n    }\\n\\n    function addRestrictedWord(bytes32 hash) external onlyNameManager {\\n        restrictWordSet.add(hash);\\n    }\\n\\n    function removeRestrictedWord(bytes32 hash) external onlyNameManager {\\n        restrictWordSet.remove(hash);\\n    }\\n\\n    function isRestrictedWord(bytes32 hash) public view returns (bool) {\\n        return restrictWordSet.contains(hash);\\n    }\\n\\n    function isTakedown(bytes32 hash) public view returns (bool) {\\n        return takedownSet.contains(hash);\\n    }\\n\\n    function getHashedTakenDownList() public view returns (bytes32[] memory) {\\n        return takedownSet.values();\\n    }\\n\\n    function getHashedRestrictedWords() public view returns (bytes32[] memory) {\\n        return restrictWordSet.values();\\n    }\\n\\n    function _whitelistCharactersAndNumbers() private {\\n        // Unicode values for '0' to '9' are 48 to 57\\n        for (uint32 i = 48; i <= 57; i++) {\\n            whitelistCharacters[i] = true;\\n        }\\n        // Unicode values for 'a' to 'z' are 97 to 122\\n        for (uint32 i = 97; i <= 122; i++) {\\n            whitelistCharacters[i] = true;\\n        }\\n    }\\n}\\n\",\"keccak256\":\"0xf1b62c36237ce4a32a0edbc2a061c0ad0b3096c9c3fd1e2dcfe061a9c1318f47\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50604051610d18380380610d1883398101604081905261002f91610156565b6001600160a01b0381166100a35760405162461bcd60e51b815260206004820152603160248201527f41646d696e20636f6e747261637420616464726573732063616e6e6f7420626560448201527020746865207a65726f206164647265737360781b606482015260840160405180910390fd5b600580546001600160a01b0319166001600160a01b0383161790556100c66100cc565b506101b7565b60305b60398163ffffffff161161010f5763ffffffff81166000908152602081905260409020805460ff191660011790558061010781610186565b9150506100cf565b5060615b607a8163ffffffff16116101535763ffffffff81166000908152602081905260409020805460ff191660011790558061014b81610186565b915050610113565b50565b60006020828403121561016857600080fd5b81516001600160a01b038116811461017f57600080fd5b9392505050565b600063ffffffff8083168181036101ad57634e487b7160e01b600052601160045260246000fd5b6001019392505050565b610b52806101c66000396000f3fe608060405234801561001057600080fd5b50600436106100ea5760003560e01c80638dc465b21161008c578063deb68ebd11610066578063deb68ebd14610226578063e1e403e114610239578063ea8fc6001461024c578063f6371ce31461025457600080fd5b80638dc465b2146101c55780639da5cb63146101d8578063c05c5e94146101fb57600080fd5b806325f67485116100c857806325f6748514610175578063610ece951461018a57806374d542d31461019f5780638aba607d146101b257600080fd5b80630393533e146100ef578063165c05ad146101175780631be0e19514610140575b600080fd5b6101026100fd366004610a2a565b610267565b60405190151581526020015b60405180910390f35b610102610125366004610a43565b63ffffffff1660009081526020819052604090205460ff1690565b6101677f6ae19fd703cb304b53d5f09f6a0ce96b7c6a7edd912859ca6c4ed719bcab610d81565b60405190815260200161010e565b61017d61027a565b60405161010e9190610a69565b61019d610198366004610a2a565b61028b565b005b61019d6101ad366004610a43565b61037d565b61019d6101c0366004610a2a565b61047c565b61019d6101d3366004610a2a565b610565565b6101026101e6366004610a43565b60006020819052908152604090205460ff1681565b60055461020e906001600160a01b031681565b6040516001600160a01b03909116815260200161010e565b610102610234366004610a2a565b61064e565b61019d610247366004610a2a565b61065b565b61017d610744565b61019d610262366004610a43565b610750565b600061027460018361084c565b92915050565b60606102866001610867565b905090565b600554604051632474521560e21b81527f6ae19fd703cb304b53d5f09f6a0ce96b7c6a7edd912859ca6c4ed719bcab610d60048201523360248201526001600160a01b03909116906391d1485490604401602060405180830381865afa1580156102f9573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061031d9190610aad565b61036e5760405162461bcd60e51b815260206004820152601c60248201527f43616c6c6572206973206e6f742061206e616d65206d616e616765720000000060448201526064015b60405180910390fd5b610379600182610874565b5050565b600554604051632474521560e21b81527f6ae19fd703cb304b53d5f09f6a0ce96b7c6a7edd912859ca6c4ed719bcab610d60048201523360248201526001600160a01b03909116906391d1485490604401602060405180830381865afa1580156103eb573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061040f9190610aad565b61045b5760405162461bcd60e51b815260206004820152601c60248201527f43616c6c6572206973206e6f742061206e616d65206d616e61676572000000006044820152606401610365565b63ffffffff166000908152602081905260409020805460ff19166001179055565b600554604051632474521560e21b81527f6ae19fd703cb304b53d5f09f6a0ce96b7c6a7edd912859ca6c4ed719bcab610d60048201523360248201526001600160a01b03909116906391d1485490604401602060405180830381865afa1580156104ea573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061050e9190610aad565b61055a5760405162461bcd60e51b815260206004820152601c60248201527f43616c6c6572206973206e6f742061206e616d65206d616e61676572000000006044820152606401610365565b610379600382610880565b600554604051632474521560e21b81527f6ae19fd703cb304b53d5f09f6a0ce96b7c6a7edd912859ca6c4ed719bcab610d60048201523360248201526001600160a01b03909116906391d1485490604401602060405180830381865afa1580156105d3573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906105f79190610aad565b6106435760405162461bcd60e51b815260206004820152601c60248201527f43616c6c6572206973206e6f742061206e616d65206d616e61676572000000006044820152606401610365565b610379600182610880565b600061027460038361084c565b600554604051632474521560e21b81527f6ae19fd703cb304b53d5f09f6a0ce96b7c6a7edd912859ca6c4ed719bcab610d60048201523360248201526001600160a01b03909116906391d1485490604401602060405180830381865afa1580156106c9573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906106ed9190610aad565b6107395760405162461bcd60e51b815260206004820152601c60248201527f43616c6c6572206973206e6f742061206e616d65206d616e61676572000000006044820152606401610365565b610379600382610874565b60606102866003610867565b600554604051632474521560e21b81527f6ae19fd703cb304b53d5f09f6a0ce96b7c6a7edd912859ca6c4ed719bcab610d60048201523360248201526001600160a01b03909116906391d1485490604401602060405180830381865afa1580156107be573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906107e29190610aad565b61082e5760405162461bcd60e51b815260206004820152601c60248201527f43616c6c6572206973206e6f742061206e616d65206d616e61676572000000006044820152606401610365565b63ffffffff166000908152602081905260409020805460ff19169055565b600081815260018301602052604081205415155b9392505050565b606060006108608361088c565b600061086083836108e8565b60006108608383610937565b6060816000018054806020026020016040519081016040528092919081815260200182805480156108dc57602002820191906000526020600020905b8154815260200190600101908083116108c8575b50505050509050919050565b600081815260018301602052604081205461092f57508154600181810184556000848152602080822090930184905584548482528286019093526040902091909155610274565b506000610274565b60008181526001830160205260408120548015610a2057600061095b600183610acf565b855490915060009061096f90600190610acf565b90508181146109d457600086600001828154811061098f5761098f610af0565b90600052602060002001549050808760000184815481106109b2576109b2610af0565b6000918252602080832090910192909255918252600188019052604090208390555b85548690806109e5576109e5610b06565b600190038181906000526020600020016000905590558560010160008681526020019081526020016000206000905560019350505050610274565b6000915050610274565b600060208284031215610a3c57600080fd5b5035919050565b600060208284031215610a5557600080fd5b813563ffffffff8116811461086057600080fd5b6020808252825182820181905260009190848201906040850190845b81811015610aa157835183529284019291840191600101610a85565b50909695505050505050565b600060208284031215610abf57600080fd5b8151801515811461086057600080fd5b8181038181111561027457634e487b7160e01b600052601160045260246000fd5b634e487b7160e01b600052603260045260246000fd5b634e487b7160e01b600052603160045260246000fdfea264697066735822122099218bf9900cd60df5c6a69c6a754fa37bb906ff7a3dc3cbfcfcfb94f481148a64736f6c63430008110033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100ea5760003560e01c80638dc465b21161008c578063deb68ebd11610066578063deb68ebd14610226578063e1e403e114610239578063ea8fc6001461024c578063f6371ce31461025457600080fd5b80638dc465b2146101c55780639da5cb63146101d8578063c05c5e94146101fb57600080fd5b806325f67485116100c857806325f6748514610175578063610ece951461018a57806374d542d31461019f5780638aba607d146101b257600080fd5b80630393533e146100ef578063165c05ad146101175780631be0e19514610140575b600080fd5b6101026100fd366004610a2a565b610267565b60405190151581526020015b60405180910390f35b610102610125366004610a43565b63ffffffff1660009081526020819052604090205460ff1690565b6101677f6ae19fd703cb304b53d5f09f6a0ce96b7c6a7edd912859ca6c4ed719bcab610d81565b60405190815260200161010e565b61017d61027a565b60405161010e9190610a69565b61019d610198366004610a2a565b61028b565b005b61019d6101ad366004610a43565b61037d565b61019d6101c0366004610a2a565b61047c565b61019d6101d3366004610a2a565b610565565b6101026101e6366004610a43565b60006020819052908152604090205460ff1681565b60055461020e906001600160a01b031681565b6040516001600160a01b03909116815260200161010e565b610102610234366004610a2a565b61064e565b61019d610247366004610a2a565b61065b565b61017d610744565b61019d610262366004610a43565b610750565b600061027460018361084c565b92915050565b60606102866001610867565b905090565b600554604051632474521560e21b81527f6ae19fd703cb304b53d5f09f6a0ce96b7c6a7edd912859ca6c4ed719bcab610d60048201523360248201526001600160a01b03909116906391d1485490604401602060405180830381865afa1580156102f9573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061031d9190610aad565b61036e5760405162461bcd60e51b815260206004820152601c60248201527f43616c6c6572206973206e6f742061206e616d65206d616e616765720000000060448201526064015b60405180910390fd5b610379600182610874565b5050565b600554604051632474521560e21b81527f6ae19fd703cb304b53d5f09f6a0ce96b7c6a7edd912859ca6c4ed719bcab610d60048201523360248201526001600160a01b03909116906391d1485490604401602060405180830381865afa1580156103eb573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061040f9190610aad565b61045b5760405162461bcd60e51b815260206004820152601c60248201527f43616c6c6572206973206e6f742061206e616d65206d616e61676572000000006044820152606401610365565b63ffffffff166000908152602081905260409020805460ff19166001179055565b600554604051632474521560e21b81527f6ae19fd703cb304b53d5f09f6a0ce96b7c6a7edd912859ca6c4ed719bcab610d60048201523360248201526001600160a01b03909116906391d1485490604401602060405180830381865afa1580156104ea573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061050e9190610aad565b61055a5760405162461bcd60e51b815260206004820152601c60248201527f43616c6c6572206973206e6f742061206e616d65206d616e61676572000000006044820152606401610365565b610379600382610880565b600554604051632474521560e21b81527f6ae19fd703cb304b53d5f09f6a0ce96b7c6a7edd912859ca6c4ed719bcab610d60048201523360248201526001600160a01b03909116906391d1485490604401602060405180830381865afa1580156105d3573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906105f79190610aad565b6106435760405162461bcd60e51b815260206004820152601c60248201527f43616c6c6572206973206e6f742061206e616d65206d616e61676572000000006044820152606401610365565b610379600182610880565b600061027460038361084c565b600554604051632474521560e21b81527f6ae19fd703cb304b53d5f09f6a0ce96b7c6a7edd912859ca6c4ed719bcab610d60048201523360248201526001600160a01b03909116906391d1485490604401602060405180830381865afa1580156106c9573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906106ed9190610aad565b6107395760405162461bcd60e51b815260206004820152601c60248201527f43616c6c6572206973206e6f742061206e616d65206d616e61676572000000006044820152606401610365565b610379600382610874565b60606102866003610867565b600554604051632474521560e21b81527f6ae19fd703cb304b53d5f09f6a0ce96b7c6a7edd912859ca6c4ed719bcab610d60048201523360248201526001600160a01b03909116906391d1485490604401602060405180830381865afa1580156107be573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906107e29190610aad565b61082e5760405162461bcd60e51b815260206004820152601c60248201527f43616c6c6572206973206e6f742061206e616d65206d616e61676572000000006044820152606401610365565b63ffffffff166000908152602081905260409020805460ff19169055565b600081815260018301602052604081205415155b9392505050565b606060006108608361088c565b600061086083836108e8565b60006108608383610937565b6060816000018054806020026020016040519081016040528092919081815260200182805480156108dc57602002820191906000526020600020905b8154815260200190600101908083116108c8575b50505050509050919050565b600081815260018301602052604081205461092f57508154600181810184556000848152602080822090930184905584548482528286019093526040902091909155610274565b506000610274565b60008181526001830160205260408120548015610a2057600061095b600183610acf565b855490915060009061096f90600190610acf565b90508181146109d457600086600001828154811061098f5761098f610af0565b90600052602060002001549050808760000184815481106109b2576109b2610af0565b6000918252602080832090910192909255918252600188019052604090208390555b85548690806109e5576109e5610b06565b600190038181906000526020600020016000905590558560010160008681526020019081526020016000206000905560019350505050610274565b6000915050610274565b600060208284031215610a3c57600080fd5b5035919050565b600060208284031215610a5557600080fd5b813563ffffffff8116811461086057600080fd5b6020808252825182820181905260009190848201906040850190845b81811015610aa157835183529284019291840191600101610a85565b50909695505050505050565b600060208284031215610abf57600080fd5b8151801515811461086057600080fd5b8181038181111561027457634e487b7160e01b600052601160045260246000fd5b634e487b7160e01b600052603260045260246000fd5b634e487b7160e01b600052603160045260246000fdfea264697066735822122099218bf9900cd60df5c6a69c6a754fa37bb906ff7a3dc3cbfcfcfb94f481148a64736f6c63430008110033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 30850,
+        "contract": "jns-admin-contract/contracts/NameManagerDataStore.sol:NameManagerDataStore",
+        "label": "whitelistCharacters",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_uint32,t_bool)"
+      },
+      {
+        "astId": 30853,
+        "contract": "jns-admin-contract/contracts/NameManagerDataStore.sol:NameManagerDataStore",
+        "label": "takedownSet",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_struct(Bytes32Set)7019_storage"
+      },
+      {
+        "astId": 30856,
+        "contract": "jns-admin-contract/contracts/NameManagerDataStore.sol:NameManagerDataStore",
+        "label": "restrictWordSet",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_struct(Bytes32Set)7019_storage"
+      },
+      {
+        "astId": 30859,
+        "contract": "jns-admin-contract/contracts/NameManagerDataStore.sol:NameManagerDataStore",
+        "label": "adminContract",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_contract(IJNSAdminContract)29985"
+      }
+    ],
+    "types": {
+      "t_array(t_bytes32)dyn_storage": {
+        "base": "t_bytes32",
+        "encoding": "dynamic_array",
+        "label": "bytes32[]",
+        "numberOfBytes": "32"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_bytes32": {
+        "encoding": "inplace",
+        "label": "bytes32",
+        "numberOfBytes": "32"
+      },
+      "t_contract(IJNSAdminContract)29985": {
+        "encoding": "inplace",
+        "label": "contract IJNSAdminContract",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_bytes32,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_mapping(t_uint32,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_uint32",
+        "label": "mapping(uint32 => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      },
+      "t_struct(Bytes32Set)7019_storage": {
+        "encoding": "inplace",
+        "label": "struct EnumerableSet.Bytes32Set",
+        "members": [
+          {
+            "astId": 7018,
+            "contract": "jns-admin-contract/contracts/NameManagerDataStore.sol:NameManagerDataStore",
+            "label": "_inner",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_struct(Set)6825_storage"
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "t_struct(Set)6825_storage": {
+        "encoding": "inplace",
+        "label": "struct EnumerableSet.Set",
+        "members": [
+          {
+            "astId": 6820,
+            "contract": "jns-admin-contract/contracts/NameManagerDataStore.sol:NameManagerDataStore",
+            "label": "_values",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_array(t_bytes32)dyn_storage"
+          },
+          {
+            "astId": 6824,
+            "contract": "jns-admin-contract/contracts/NameManagerDataStore.sol:NameManagerDataStore",
+            "label": "_indexes",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_bytes32,t_uint256)"
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      },
+      "t_uint32": {
+        "encoding": "inplace",
+        "label": "uint32",
+        "numberOfBytes": "4"
+      }
+    }
+  }
+}
