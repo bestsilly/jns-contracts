@@ -41,11 +41,11 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   console.log(`Updating Oracle Address to ${oracleAddress} in JNSAdminContract`)
   const jnsAdmin = await ethers.getContract('JNSAdminContract', owner)
-  const tx = await jnsAdmin
+  const changeOracleTx = await jnsAdmin
     .connect(await ethers.getSigner(owner))
-    .changeOracleAddress(oracleAddress)
+    .changeOracle(oracleAddress)
   console.log(`Oracle address updated to ${oracleAddress}`)
-  await tx.wait()
+  await changeOracleTx.wait()
 
   const nameManagerDataStoreArgs = {
     from: deployer,
@@ -64,7 +64,15 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     log: true,
   }
 
-  await deploy('NameManager', nameManagerArgs)
+  const nameManager = await deploy('NameManager', nameManagerArgs)
+
+  const setNameManagerAddressTx = await jnsAdmin
+    .connect(await ethers.getSigner(owner))
+    .changeNameManager(nameManager.address)
+
+  console.log(`NameManager address updated to ${nameManager.address}`)
+
+  await setNameManagerAddressTx.wait()
 }
 
 func.id = 'price-oracle'

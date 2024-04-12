@@ -8,9 +8,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   // TODO: Change metadataHost
   let metadataHost =
-    process.env.METADATA_HOST || 'jns-metadata.testnet.jfinchain.com'
+    process.env.METADATA_HOST || 'https://jns-metadata.testnet.jfinchain.com'
 
-  const metadataUrl = `${metadataHost}/name/0x{id}`
+  const metadataUrl = `${metadataHost}/name/`
 
   await deploy('StaticMetadataService', {
     from: deployer,
