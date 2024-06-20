@@ -26,6 +26,18 @@ interface IETHRegistrarController {
 
     function commitments(bytes32) external view returns (uint256);
 
+    function registerWithId(
+        string calldata,
+        address,
+        uint256,
+        bytes32,
+        address,
+        bytes[] calldata,
+        bool,
+        uint16,
+        string calldata
+    ) external payable;
+
     function register(
         string calldata,
         address,

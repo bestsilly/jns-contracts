@@ -6,12 +6,15 @@
     "test": "hardhat test",
     "test:local": "hardhat --network localhost test",
     "test:deploy": "hardhat --network hardhat deploy",
+    "testnet:deploy": "hardhat --network jfintestnet deploy",
     "lint": "hardhat check",
     "build": "rm -rf ./build/deploy ./build/hardhat.config.js && hardhat compile && tsc",
     "format": "prettier --write .",
     "prepublishOnly": "yarn build",
     "pub": "yarn publish --access public",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "local:add:jns-admin-contract": "yalc add jns-admin-contract && yarn",
+    "local:remove:jns-admin-contract": "yalc remove jns-admin-contract && yarn"
   },
   "files": [
     "build",
@@ -57,8 +60,9 @@
   "dependencies": {
     "@ensdomains/buffer": "^0.1.1",
     "@ensdomains/solsha1": "0.0.3",
-    "@openzeppelin/contracts": "^4.1.0",
-    "dns-packet": "^5.3.0"
+    "@openzeppelin/contracts": "^4.0.1",
+    "dns-packet": "^5.3.0",
+    "jns-admin-contract": "file:.yalc/jns-admin-contract"
   },
   "directories": {
     "test": "test"

@@ -14,6 +14,9 @@ import {IERC165} from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 import {Address} from "@openzeppelin/contracts/utils/Address.sol";
 import {INameWrapper} from "../wrapper/INameWrapper.sol";
 import {ERC20Recoverable} from "../utils/ERC20Recoverable.sol";
+import {JNSAdminContract} from "jns-admin-contract/contracts/JNSAdminContract.sol";
+import {NameManager} from "jns-admin-contract/contracts/NameManager.sol";
+import {INameManager} from "jns-admin-contract/contracts/INameManager.sol";
 
 error CommitmentTooNew(bytes32 commitment);
 error CommitmentTooOld(bytes32 commitment);
@@ -26,6 +29,7 @@ error InsufficientValue();
 error Unauthorised(bytes32 node);
 error MaxCommitmentAgeTooLow();
 error MaxCommitmentAgeTooHigh();
+error NameIsInvalid(string name);
 
 /**
  * @dev A registrar controller for registering and renewing names at fixed cost.
@@ -42,7 +46,7 @@ contract ETHRegistrarController is
 
     uint256 public constant MIN_REGISTRATION_DURATION = 28 days;
     bytes32 private constant ETH_NODE =
-        0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae;
+        0xa58877ec636d078e724c52502dd4bf105845a9ae697b2e978efecbf12524d92a;
     uint64 private constant MAX_EXPIRY = type(uint64).max;
     BaseRegistrarImplementation immutable base;
     IPriceOracle public immutable prices;
@@ -50,6 +54,7 @@ contract ETHRegistrarController is
     uint256 public immutable maxCommitmentAge;
     ReverseRegistrar public immutable reverseRegistrar;
     INameWrapper public immutable nameWrapper;
+    JNSAdminContract public immutable jnsAdmin;
 
     mapping(bytes32 => uint256) public commitments;
 
@@ -67,6 +72,14 @@ contract ETHRegistrarController is
         uint256 cost,
         uint256 expires
     );
+    event NameRegisteredWithId(
+        string name,
+        bytes32 indexed label,
+        address indexed owner,
+        string id
+    );
+
+    event FundsWithdrawn(address to, uint256 amount);
 
     constructor(
         BaseRegistrarImplementation _base,
@@ -75,7 +88,8 @@ contract ETHRegistrarController is
         uint256 _maxCommitmentAge,
         ReverseRegistrar _reverseRegistrar,
         INameWrapper _nameWrapper,
-        ENS _ens
+        ENS _ens,
+        JNSAdminContract _jnsAdmin
     ) ReverseClaimer(_ens, msg.sender) {
         if (_maxCommitmentAge <= _minCommitmentAge) {
             revert MaxCommitmentAgeTooLow();
@@ -91,6 +105,7 @@ contract ETHRegistrarController is
         maxCommitmentAge = _maxCommitmentAge;
         reverseRegistrar = _reverseRegistrar;
         nameWrapper = _nameWrapper;
+        jnsAdmin = _jnsAdmin;
     }
 
     function rentPrice(
@@ -149,6 +164,33 @@ contract ETHRegistrarController is
         commitments[commitment] = block.timestamp;
     }
 
+    function registerWithId(
+        string calldata _name,
+        address _owner,
+        uint256 _duration,
+        bytes32 _secret,
+        address _resolver,
+        bytes[] calldata _data,
+        bool _reverseRecord,
+        uint16 _ownerControlledFuses,
+        string calldata _id
+    ) public payable {
+        register(
+            _name,
+            _owner,
+            _duration,
+            _secret,
+            _resolver,
+            _data,
+            _reverseRecord,
+            _ownerControlledFuses
+        );
+
+        emit NameRegisteredWithId(_name, keccak256(bytes(_name)), _owner, _id);
+    }
+
+    mapping(bytes32 => string) public names;
+
     function register(
         string calldata name,
         address owner,
@@ -162,6 +204,10 @@ contract ETHRegistrarController is
         IPriceOracle.Price memory price = rentPrice(name, duration);
         if (msg.value < price.base + price.premium) {
             revert InsufficientValue();
+        }
+
+        if (!INameManager(jnsAdmin.nameManagerAddress()).isValid(name)) {
+            revert NameIsInvalid(name);
         }
 
         _consumeCommitment(
@@ -187,17 +233,21 @@ contract ETHRegistrarController is
             ownerControlledFuses
         );
 
+        bytes32 label = keccak256(bytes(name));
+
         if (data.length > 0) {
-            _setRecords(resolver, keccak256(bytes(name)), data);
+            _setRecords(resolver, label, data);
         }
 
         if (reverseRecord) {
             _setReverseRecord(name, resolver, msg.sender);
         }
 
+        names[label] = name;
+
         emit NameRegistered(
             name,
-            keccak256(bytes(name)),
+            label,
             owner,
             price.base,
             price.premium,
@@ -231,7 +281,10 @@ contract ETHRegistrarController is
     }
 
     function withdraw() public {
-        payable(owner()).transfer(address(this).balance);
+        uint256 balance = address(this).balance;
+        (bool success, ) = payable(address(jnsAdmin)).call{value: balance}("");
+        require(success, "Transfer failed.");
+        emit FundsWithdrawn(address(jnsAdmin), balance);
     }
 
     function supportsInterface(
@@ -274,7 +327,7 @@ contract ETHRegistrarController is
         bytes32 label,
         bytes[] calldata data
     ) internal {
-        // use hardcoded .eth namehash
+        // use hardcoded .jfin namehash
         bytes32 nodehash = keccak256(abi.encodePacked(ETH_NODE, label));
         Resolver resolver = Resolver(resolverAddress);
         resolver.multicallWithNodeCheck(nodehash, data);
@@ -289,7 +342,7 @@ contract ETHRegistrarController is
             msg.sender,
             owner,
             resolver,
-            string.concat(name, ".eth")
+            string.concat(name, ".jfin")
         );
     }
 }

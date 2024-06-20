@@ -8,3 +8,11 @@ node_modules
 build
 forge-cache
 out
+
+.vscode/*
+!.vscode/settings.json
+
+.yalc
+yalc.lock
+
+verify

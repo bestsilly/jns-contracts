@@ -16,24 +16,24 @@ contract('FIFSRegistrar', function (accounts) {
   })
 
   it('should allow registration of names', async () => {
-    await registrar.register(sha3('eth'), accounts[0], { from: accounts[0] })
+    await registrar.register(sha3('jfin'), accounts[0], { from: accounts[0] })
     assert.equal(await ens.owner('0x0'), registrar.address)
-    assert.equal(await ens.owner(namehash.hash('eth')), accounts[0])
+    assert.equal(await ens.owner(namehash.hash('jfin')), accounts[0])
   })
 
   describe('transferring names', async () => {
     beforeEach(async () => {
-      await registrar.register(sha3('eth'), accounts[0], { from: accounts[0] })
+      await registrar.register(sha3('jfin'), accounts[0], { from: accounts[0] })
     })
 
     it('should allow transferring name to your own', async () => {
-      await registrar.register(sha3('eth'), accounts[1], { from: accounts[0] })
-      assert.equal(await ens.owner(namehash.hash('eth')), accounts[1])
+      await registrar.register(sha3('jfin'), accounts[1], { from: accounts[0] })
+      assert.equal(await ens.owner(namehash.hash('jfin')), accounts[1])
     })
 
     it('forbids transferring the name you do not own', async () => {
       await exceptions.expectFailure(
-        registrar.register(sha3('eth'), accounts[1], { from: accounts[1] }),
+        registrar.register(sha3('jfin'), accounts[1], { from: accounts[1] }),
       )
     })
   })

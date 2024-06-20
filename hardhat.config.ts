@@ -73,6 +73,12 @@ const config: HardhatUserConfig = {
       chainId: 11155111,
       accounts: real_accounts,
     },
+    jfintestnet: {
+      url: `https://rpc.testnet.jfinchain.com`,
+      tags: ['test', 'legacy', 'use_root'],
+      chainId: 3502,
+      accounts: real_accounts,
+    },
     mainnet: {
       url: `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
       tags: ['legacy', 'use_root'],
@@ -126,7 +132,7 @@ const config: HardhatUserConfig = {
       default: 0,
     },
     owner: {
-      default: 1,
+      default: 0,
     },
   },
   external: {

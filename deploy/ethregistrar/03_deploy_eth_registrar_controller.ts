@@ -28,22 +28,24 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   )
   const reverseRegistrar = await ethers.getContract('ReverseRegistrar', owner)
   const nameWrapper = await ethers.getContract('NameWrapper', owner)
-  const ethOwnedResolver = await ethers.getContract('OwnedResolver', owner)
+  const jnsAdmin = await ethers.getContract('JNSAdminContract', owner)
 
   const deployArgs = {
     from: deployer,
     args: [
       registrar.address,
-      priceOracle.address,
+      process.env.PRICE_ORACLE_ADDRESS || priceOracle.address,
       60,
       86400,
       reverseRegistrar.address,
       nameWrapper.address,
       registry.address,
+      jnsAdmin.address,
     ],
     log: true,
   }
   const controller = await deploy('ETHRegistrarController', deployArgs)
+
   if (!controller.newlyDeployed) return
 
   if (owner !== deployer) {
@@ -78,21 +80,21 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const artifact = await deployments.getArtifact('IETHRegistrarController')
   const interfaceId = computeInterfaceId(new Interface(artifact.abi))
 
-  const resolver = await registry.resolver(ethers.utils.namehash('eth'))
+  const resolver = await registry.resolver(ethers.utils.namehash('jfin'))
   if (resolver === ethers.constants.AddressZero) {
     console.log(
-      `No resolver set for .eth; not setting interface ${interfaceId} for ETH Registrar Controller`,
+      `No resolver set for .jfin; not setting interface ${interfaceId} for ETH Registrar Controller`,
     )
     return
   }
   const resolverContract = await ethers.getContractAt('OwnedResolver', resolver)
   const tx3 = await resolverContract.setInterface(
-    ethers.utils.namehash('eth'),
+    ethers.utils.namehash('jfin'),
     interfaceId,
     controller.address,
   )
   console.log(
-    `Setting ETHRegistrarController interface ID ${interfaceId} on .eth resolver (tx: ${tx3.hash})...`,
+    `Setting ETHRegistrarController interface ID ${interfaceId} on .jfin resolver (tx: ${tx3.hash})...`,
   )
   await tx3.wait()
 }

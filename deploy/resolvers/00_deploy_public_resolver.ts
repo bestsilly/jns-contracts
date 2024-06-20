@@ -31,25 +31,27 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   )
   await tx.wait()
 
-  if ((await registry.owner(ethers.utils.namehash('resolver.eth'))) === owner) {
+  if (
+    (await registry.owner(ethers.utils.namehash('resolver.jfin'))) === owner
+  ) {
     const pr = (await ethers.getContract('PublicResolver')).connect(
       await ethers.getSigner(owner),
     )
-    const resolverHash = ethers.utils.namehash('resolver.eth')
+    const resolverHash = ethers.utils.namehash('resolver.jfin')
     const tx2 = await registry.setResolver(resolverHash, pr.address)
     console.log(
-      `Setting resolver for resolver.eth to PublicResolver (tx: ${tx2.hash})...`,
+      `Setting resolver for resolver.jfin to PublicResolver (tx: ${tx2.hash})...`,
     )
     await tx2.wait()
 
     const tx3 = await pr['setAddr(bytes32,address)'](resolverHash, pr.address)
     console.log(
-      `Setting address for resolver.eth to PublicResolver (tx: ${tx3.hash})...`,
+      `Setting address for resolver.jfin to PublicResolver (tx: ${tx3.hash})...`,
     )
     await tx3.wait()
   } else {
     console.log(
-      'resolver.eth is not owned by the owner address, not setting resolver',
+      'resolver.jfin is not owned by the owner address, not setting resolver',
     )
   }
 }

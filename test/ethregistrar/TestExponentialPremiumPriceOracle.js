@@ -26,8 +26,8 @@ contract('ExponentialPricePremiumOracle', function (accounts) {
 
   before(async () => {
     ens = await ENS.new()
-    registrar = await BaseRegistrar.new(ens.address, namehash.hash('eth'))
-    await ens.setSubnodeOwner('0x0', sha3('eth'), registrar.address)
+    registrar = await BaseRegistrar.new(ens.address, namehash.hash('jfin'))
+    await ens.setSubnodeOwner('0x0', sha3('jfin'), registrar.address)
     await registrar.addController(accounts[0])
 
     // Dummy oracle with 1 ETH == 2 USD
@@ -66,13 +66,13 @@ contract('ExponentialPricePremiumOracle', function (accounts) {
   })
 
   it('should not specify a premium for renewals', async () => {
-    const ts = (await web3.eth.getBlock('latest')).timestamp
+    const ts = (await web3.jfin.getBlock('latest')).timestamp
     assert.equal((await priceOracle.premium('foobar', ts, 0)).toNumber(), 0)
     assert.equal(parseInt((await priceOracle.price('foobar', ts, 0)).base), 0)
   })
 
   it('should specify the maximum premium at the moment of expiration', async () => {
-    const ts = (await web3.eth.getBlock('latest')).timestamp - 90 * DAY
+    const ts = (await web3.jfin.getBlock('latest')).timestamp - 90 * DAY
     const expectedPrice = ((START_PRICE - LAST_VALUE) / 2) * 1e18 // ETH at $2 for $1 mil in 18 decimal precision
     assert.equal(
       (await priceOracle.premium('foobar', ts, 0)).toString(),
@@ -86,7 +86,7 @@ contract('ExponentialPricePremiumOracle', function (accounts) {
 
   it('should specify the correct price after 2.5 days and 1 year registration', async () => {
     const ts =
-      (await web3.eth.getBlock('latest')).timestamp - (90 * DAY + DAY * 2.5)
+      (await web3.jfin.getBlock('latest')).timestamp - (90 * DAY + DAY * 2.5)
     const lengthOfRegistration = DAY * 365
     const expectedPremium = (
       exponentialReduceFloatingPoint(START_PRICE, 2.5) / 2
@@ -109,7 +109,7 @@ contract('ExponentialPricePremiumOracle', function (accounts) {
   })
 
   it('should produce a 0 premium at the end of the decay period', async () => {
-    let ts = (await web3.eth.getBlock('latest')).timestamp - 90 * DAY
+    let ts = (await web3.jfin.getBlock('latest')).timestamp - 90 * DAY
     expect(
       (
         await priceOracle.premium('foobar', ts - LAST_DAY * DAY + 1, 0)
@@ -122,7 +122,7 @@ contract('ExponentialPricePremiumOracle', function (accounts) {
 
   // This test only runs every hour of each day. For an exhaustive test use the exponentialPremiumScript and uncomment the exhaustive test below
   it('should not be beyond a certain amount of inaccuracy from floating point calc', async () => {
-    let ts = (await web3.eth.getBlock('latest')).timestamp - 90 * DAY
+    let ts = (await web3.jfin.getBlock('latest')).timestamp - 90 * DAY
     let differencePercentSum = 0
     let percentMax = 0
 
@@ -161,7 +161,7 @@ contract('ExponentialPricePremiumOracle', function (accounts) {
   //   function exponentialReduceFloatingPoint(startPrice, days) {
   //     return startPrice * 0.5 ** days
   //   }
-  //   let ts = (await web3.eth.getBlock('latest')).timestamp - 90 * DAY
+  //   let ts = (await web3.jfin.getBlock('latest')).timestamp - 90 * DAY
   //   let differencePercentSum = 0
   //   let percentMax = 0
 

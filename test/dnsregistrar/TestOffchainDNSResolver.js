@@ -188,19 +188,19 @@ contract('OffchainDNSResolver', function (accounts) {
   })
 
   it('handles calls to resolveCallback() with valid DNS TXT records containing a name', async function () {
-    // Configure dnsresolver.eth to resolve to the ownedResolver so we can use it in the test
-    await root.setSubnodeOwner(ethers.utils.id('eth'), accounts[0])
+    // Configure dnsresolver.jfin to resolve to the ownedResolver so we can use it in the test
+    await root.setSubnodeOwner(ethers.utils.id('jfin'), accounts[0])
     await ens.setSubnodeOwner(
-      namehash.hash('eth'),
+      namehash.hash('jfin'),
       ethers.utils.id('dnsresolver'),
       accounts[0],
     )
     await ens.setResolver(
-      namehash.hash('dnsresolver.eth'),
+      namehash.hash('dnsresolver.jfin'),
       ownedResolver.address,
     )
     await ownedResolver.setAddr(
-      namehash.hash('dnsresolver.eth'),
+      namehash.hash('dnsresolver.jfin'),
       ownedResolver.address,
     )
 
@@ -213,7 +213,7 @@ contract('OffchainDNSResolver', function (accounts) {
     ).encodeABI()
     const result = await doResolveCallback(
       name,
-      [`ENS1 dnsresolver.eth`],
+      [`ENS1 dnsresolver.jfin`],
       callData,
     )
     expect(
@@ -262,7 +262,7 @@ contract('OffchainDNSResolver', function (accounts) {
     ).encodeABI()
     const result = await doResolveCallback(
       name,
-      ['ENS1 nonexistent.eth', 'ENS1 0x1234', `ENS1 ${ownedResolver.address}`],
+      ['ENS1 nonexistent.jfin', 'ENS1 0x1234', `ENS1 ${ownedResolver.address}`],
       callData,
     )
     expect(

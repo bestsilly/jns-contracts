@@ -8,7 +8,10 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployer } = await getNamedAccounts()
 
   const registry = await ethers.getContract('ENSRegistry')
-  const batchGatewayURLs = JSON.parse(process.env.BATCH_GATEWAY_URLS || '[]')
+  const batchGatewayURLs = JSON.parse(
+    process.env.BATCH_GATEWAY_URLS ||
+      '["https://universal-offchain-unwrapper.ens-cf.workers.dev/"]',
+  )
 
   if (batchGatewayURLs.length === 0) {
     throw new Error('UniversalResolver: No batch gateway URLs provided')

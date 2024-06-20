@@ -12,8 +12,8 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployer, owner } = await getNamedAccounts()
 
   if (network.tags.legacy) {
-    console.log(deployer)
-    console.log(owner)
+    console.log('deployer', deployer)
+    console.log('owner', owner)
     const contract = await deploy('LegacyENSRegistry', {
       from: owner,
       args: [],
